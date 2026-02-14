@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoPro | Trading Platform</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== PROFESSIONAL TRADING STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #0B0E11;
+            color: #EAECEF;
+            min-height: 100vh;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: #1E2026;
+            border-bottom: 1px solid #2B2F36;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #F0B90B;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #EAECEF;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #F0B90B;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #F0B90B;
+            color: #0B0E11;
+        }
+
+        .btn-primary:hover {
+            background: #F0B90B;
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #F0B90B;
+            color: #F0B90B;
+        }
+
+        .btn-outline:hover {
+            background: #F0B90B;
+            color: #0B0E11;
+        }
+
+        .btn-danger {
+            background: #CF304A;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #B32C43;
+        }
+
+        .btn-success {
+            background: #0ECB81;
+            color: #0B0E11;
+        }
+
+        /* ===== PAGES ===== */
+        .page {
+            display: none;
+            min-height: calc(100vh - 70px);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #F0B90B;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #848E9C;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* ===== AUTH CARDS ===== */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 70px);
+            padding: 40px 20px;
+        }
+
+        .auth-card {
+            background: #1E2026;
+            border-radius: 8px;
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid #2B2F36;
+        }
+
+        .auth-card h2 {
+            color: #F0B90B;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #848E9C;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: #0B0E11;
+            border: 1px solid #2B2F36;
+            border-radius: 4px;
+            color: #EAECEF;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #F0B90B;
+        }
+
+        /* ===== DASHBOARD ===== */
+        .dashboard-container {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #1E2026;
+            padding: 30px 20px;
+            border-right: 1px solid #2B2F36;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            color: #848E9C;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: #2B2F36;
+            color: #F0B90B;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background: #0B0E11;
+            overflow-x: auto;
+        }
+
+        /* ===== STATS CARDS ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #1E2026;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid #2B2F36;
+        }
+
+        .stat-card h3 {
+            color: #848E9C;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .value {
+            color: #F0B90B;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* ===== TABLES ===== */
+        .table-container {
+            background: #1E2026;
+            border-radius: 4px;
+            border: 1px solid #2B2F36;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            color: #848E9C;
+            font-weight: 500;
+            border-bottom: 1px solid #2B2F36;
+            font-size: 12px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #2B2F36;
+            color: #EAECEF;
+            font-size: 14px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ===== WALLET ADDRESS ===== */
+        .wallet-box {
+            background: #0B0E11;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #2B2F36;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .wallet-address {
+            font-family: monospace;
+            color: #F0B90B;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: #2B2F36;
+            color: #EAECEF;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            background: #3A3F4A;
+        }
+
+        /* ===== ADMIN PANEL ===== */
+        .admin-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .admin-header {
+            background: #1E2026;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #2B2F36;
+            margin-bottom: 30px;
+        }
+
+        .admin-header h2 {
+            color: #F0B90B;
+            margin-bottom: 10px;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .admin-card {
+            background: #1E2026;
+            padding: 25px;
+            border-radius: 4px;
+            border: 1px solid #2B2F36;
+        }
+
+        .admin-card h3 {
+            color: #F0B90B;
+            margin-bottom: 20px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #2B2F36;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .user-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .user-info {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .user-info strong {
+            color: #F0B90B;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .user-info small {
+            color: #848E9C;
+            font-size: 12px;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .user-actions button {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1E2026;
+            padding: 40px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid #2B2F36;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #2B2F36;
+            padding-bottom: 10px;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            color: #848E9C;
+            border-radius: 4px;
+        }
+
+        .tab.active {
+            background: #2B2F36;
+            color: #F0B90B;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ===== ALERT ===== */
+        .alert {
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-success {
+            background: #0ECB81;
+            color: #0B0E11;
+        }
+
+        .alert-danger {
+            background: #CF304A;
+            color: white;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-list-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="logo" id="homeLink">
+                    <i class="fab fa-bitcoin"></i>
+                    <span>CryptoPro</span>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="#" id="marketsLink">Markets</a>
+                    <a href="#" id="tradeLink">Trade</a>
+                    <a href="#" id="loginNavBtn">Login</a>
+                    <a href="#" id="signupNavBtn" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== PAGES ===== -->
+    <div id="pages">
+        <!-- Landing Page -->
+        <div id="landingPage" class="page active">
+            <div class="hero">
+                <div class="container">
+                    <h1>Trade Cryptocurrency</h1>
+                    <p>Buy, sell, and trade Bitcoin, Ethereum, and more with advanced tools and features.</p>
+                    <button class="btn btn-primary" id="getStartedBtn">Get Started Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signup Page -->
+        <div id="signupPage" class="page">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h2>Create Account</h2>
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="signupName" class="form-control" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="signupEmail" class="form-control" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="signupPassword" class="form-control" placeholder="••••••••" minlength="8" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                            Create Account
+                        </button>
+                    </form>
+                    <p style="text-align: center; margin-top: 20px; color: #848E9C;">
+                        Already have an account? <a href="#" id="toLoginLink" style="color: #F0B90B;">Sign In</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div id="loginPage" class="page">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h2>Welcome Back</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="loginEmail" class="form-control" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                            Sign In
+                        </button>
+                    </form>
+                    <p style="text-align: center; margin-top: 20px; color: #848E9C;">
+                        Don't have an account? <a href="#" id="toSignupLink" style="color: #F0B90B;">Sign Up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Dashboard -->
+        <div id="userDashboard" class="page">
+            <div class="dashboard-container">
+                <div class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" data-page="overview"><i class="fas fa-home"></i> Overview</a></li>
+                        <li><a href="#" data-page="portfolio"><i class="fas fa-chart-pie"></i> Portfolio</a></li>
+                        <li><a href="#" data-page="deposit"><i class="fas fa-plus-circle"></i> Deposit</a></li>
+                        <li><a href="#" data-page="history"><i class="fas fa-history"></i> History</a></li>
+                        <li><a href="#" id="adminPanelBtn" style="display: none;"><i class="fas fa-user-shield"></i> Admin Panel</a></li>
+                    </ul>
+                    
+                    <div style="margin-top: auto; padding-top: 30px;">
+                        <button id="logoutBtn" class="btn btn-outline" style="width: 100%;">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="main-content">
+                    <!-- Overview Section -->
+                    <div id="overviewSection">
+                        <h2 style="margin-bottom: 20px; color: #F0B90B;">Welcome, <span id="userName">User</span></h2>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <h3>Total Balance (USD)</h3>
+                                <div class="value">$<span id="totalBalance">0.00</span></div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Active Investments</h3>
+                                <div class="value" id="activeInvestments">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Total Deposits</h3>
+                                <div class="value">$<span id="totalDeposits">0.00</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Asset</th>
+                                        <th>Amount</th>
+                                        <th>Value (USD)</th>
+                                        <th>24h Change</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="portfolioTable">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center;">No investments yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Deposit Section -->
+                    <div id="depositSection" style="display: none;">
+                        <h2 style="margin-bottom: 20px; color: #F0B90B;">Deposit Funds</h2>
+                        
+                        <div class="auth-card" style="max-width: 600px; margin: 0;">
+                            <form id="depositForm">
+                                <div class="form-group">
+                                    <label>Amount (USD)</label>
+                                    <input type="number" id="depositAmount" class="form-control" min="10" step="1" placeholder="100" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Select Cryptocurrency</label>
+                                    <select id="depositCrypto" class="form-control">
+                                        <option value="BTC">Bitcoin (BTC)</option>
+                                        <option value="ETH">Ethereum (ETH)</option>
+                                        <option value="USDT">Tether (USDT)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="wallet-box">
+                                    <span class="wallet-address" id="walletAddress">Loading...</span>
+                                    <button type="button" class="copy-btn" id="copyAddressBtn">
+                                        <i class="far fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                                
+                                <p style="color: #848E9C; font-size: 12px; margin-top: 10px;">
+                                    Send the exact amount to this address. Your account will be credited after 3 confirmations.
+                                </p>
+                                
+                                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                                    Request Deposit
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <div class="table-container" style="margin-top: 30px;">
+                            <h3 style="color: #F0B90B; padding: 15px;">Recent Deposits</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentDeposits">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center;">No deposits yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- History Section -->
+                    <div id="historySection" style="display: none;">
+                        <h2 style="margin-bottom: 20px; color: #F0B90B;">Transaction History</h2>
+                        
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historyTable">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center;">No transactions yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Panel (Separate Page) -->
+        <div id="adminPanel" class="page">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                        <div>
+                            <h2><i class="fas fa-user-shield"></i> Admin Panel</h2>
+                            <p style="color: #848E9C;">Manage users, balances, and deposit addresses</p>
+                        </div>
+                        <button class="btn btn-outline" id="backToUserDashboard">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="users">Users Management</div>
+                    <div class="tab" data-tab="addresses">Deposit Addresses</div>
+                    <div class="tab" data-tab="stats">Platform Stats</div>
+                </div>
+                
+                <!-- Users Tab -->
+                <div class="tab-content active" id="usersTab">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-users"></i> All Users</h3>
+                        <div id="usersList"></div>
+                    </div>
+                </div>
+                
+                <!-- Addresses Tab -->
+                <div class="tab-content" id="addressesTab">
+                    <div class="admin-grid">
+                        <div class="admin-card">
+                            <h3><i class="fab fa-bitcoin"></i> Bitcoin Address</h3>
+                            <div class="form-group">
+                                <label>BTC Deposit Address</label>
+                                <input type="text" id="btcAddress" class="form-control" value="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">
+                            </div>
+                            <button class="btn btn-primary" onclick="updateWalletAddress('BTC')">Update BTC Address</button>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3><i class="fab fa-ethereum"></i> Ethereum Address</h3>
+                            <div class="form-group">
+                                <label>ETH Deposit Address</label>
+                                <input type="text" id="ethAddress" class="form-control" value="0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a">
+                            </div>
+                            <button class="btn btn-primary" onclick="updateWalletAddress('ETH')">Update ETH Address</button>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3><i class="fas fa-dollar-sign"></i> USDT Address</h3>
+                            <div class="form-group">
+                                <label>USDT Deposit Address</label>
+                                <input type="text" id="usdtAddress" class="form-control" value="0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a">
+                            </div>
+                            <button class="btn btn-primary" onclick="updateWalletAddress('USDT')">Update USDT Address</button>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-card">
+                        <h3><i class="fas fa-history"></i> Pending Deposits</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pendingDepositsList">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">No pending deposits</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats Tab -->
+                <div class="tab-content" id="statsTab">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Total Users</h3>
+                            <div class="value" id="totalUsers">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Balance</h3>
+                            <div class="value">$<span id="totalBalanceAll">0</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Deposits</h3>
+                            <div class="value">$<span id="totalDepositsAll">0</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Active Users</h3>
+                            <div class="value" id="activeUsersCount">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODALS ===== -->
+    
+    <!-- Edit Balance Modal -->
+    <div class="modal" id="editBalanceModal">
+        <div class="modal-content">
+            <h3 style="color: #F0B90B; margin-bottom: 20px;">Edit User Balance</h3>
+            <form id="editBalanceForm">
+                <div class="form-group">
+                    <label>User ID</label>
+                    <input type="text" id="editUserId" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" id="editUserName" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" id="editUserEmail" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Current Balance</label>
+                    <input type="text" id="editCurrentBalance" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label>New Balance (USD)</label>
+                    <input type="number" id="editNewBalance" class="form-control" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Reason for Change</label>
+                    <select id="editReason" class="form-control">
+                        <option value="manual">Manual Adjustment</option>
+                        <option value="deposit">Deposit Confirmation</option>
+                        <option value="bonus">Bonus</option>
+                        <option value="correction">Error Correction</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Update Balance</button>
+                <button type="button" class="btn btn-outline" style="width: 100%; margin-top: 10px;" onclick="closeModal('editBalanceModal')">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- View User Details Modal -->
+    <div class="modal" id="viewUserModal">
+        <div class="modal-content">
+            <h3 style="color: #F0B90B; margin-bottom: 20px;">User Details</h3>
+            <div id="userDetails"></div>
+            <button class="btn btn-outline" style="width: 100%; margin-top: 20px;" onclick="closeModal('viewUserModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- ===== COMPLETE JAVASCRIPT ===== -->
+    <script>
+        // ===== DATA STORAGE =====
+        let currentUser = null;
+        let authToken = localStorage.getItem('authToken');
+        
+        // Initialize the system
+        function initSystem() {
+            // Initialize users if not exists
+            if (!localStorage.getItem('users')) {
+                const demoUsers = [
+                    {
+                        id: 1,
+                        name: 'Admin User',
+                        email: 'admin@cryptopro.com',
+                        password: btoa('admin123'),
+                        balance: 50000,
+                        role: 'admin',
+                        deposits: [],
+                        transactions: [],
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        name: 'John Doe',
+                        email: 'john@example.com',
+                        password: btoa('password123'),
+                        balance: 15000,
+                        role: 'user',
+                        deposits: [],
+                        transactions: [],
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('users', JSON.stringify(demoUsers));
+            }
+
+            // Initialize wallet addresses
+            if (!localStorage.getItem('walletAddresses')) {
+                const walletAddresses = {
+                    BTC: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+                    ETH: '0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a',
+                    USDT: '0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a'
+                };
+                localStorage.setItem('walletAddresses', JSON.stringify(walletAddresses));
+            }
+
+            // Initialize pending deposits
+            if (!localStorage.getItem('pendingDeposits')) {
+                localStorage.setItem('pendingDeposits', JSON.stringify([]));
+            }
+        }
+
+        // Call init
+        initSystem();
+
+        // ===== PAGE MANAGEMENT =====
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // ===== AUTHENTICATION =====
+        function handleSignup(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem('users'));
+            
+            if (users.find(u => u.email === email)) {
+                alert('User already exists!');
+                return;
+            }
+            
+            const newUser = {
+                id: Date.now(),
+                name,
+                email,
+                password: btoa(password),
+                balance: 1000, // $1000 welcome bonus
+                role: 'user',
+                deposits: [],
+                transactions: [{
+                    id: Date.now(),
+                    type: 'welcome_bonus',
+                    amount: 1000,
+                    status: 'completed',
+                    date: new Date().toISOString()
+                }],
+                createdAt: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Auto login
+            currentUser = newUser;
+            authToken = 'token_' + Date.now();
+            localStorage.setItem('authToken', authToken);
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+            
+            alert('Account created successfully! You received $1000 welcome bonus.');
+            updateUserUI();
+            showPage('userDashboard');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem('users'));
+            const user = users.find(u => u.email === email && atob(u.password) === password);
+            
+            if (!user) {
+                alert('Invalid credentials!');
+                return;
+            }
+            
+            currentUser = user;
+            authToken = 'token_' + Date.now();
+            localStorage.setItem('authToken', authToken);
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            
+            updateUserUI();
+            showPage('userDashboard');
+            
+            // Show admin button if user is admin
+            if (user.role === 'admin') {
+                document.getElementById('adminPanelBtn').style.display = 'block';
+            }
+        }
+
+        function updateUserUI() {
+            if (currentUser) {
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('totalBalance').textContent = currentUser.balance.toFixed(2);
+                
+                // Calculate total deposits
+                const totalDeposits = currentUser.deposits?.reduce((sum, d) => sum + d.amount, 0) || 0;
+                document.getElementById('totalDeposits').textContent = totalDeposits.toFixed(2);
+                document.getElementById('activeInvestments').textContent = currentUser.deposits?.length || 0;
+                
+                // Update portfolio table
+                updatePortfolioTable();
+                
+                // Update history
+                updateHistoryTable();
+                
+                // Update recent deposits
+                updateRecentDeposits();
+            }
+        }
+
+        function updatePortfolioTable() {
+            const tbody = document.getElementById('portfolioTable');
+            
+            if (!currentUser?.deposits?.length) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">No investments yet</td></tr>';
+                return;
+            }
+
+            // Group deposits by currency
+            const portfolio = {};
+            currentUser.deposits.forEach(d => {
+                if (!portfolio[d.currency]) {
+                    portfolio[d.currency] = {
+                        amount: 0,
+                        value: 0
+                    };
+                }
+                portfolio[d.currency].amount += d.amount;
+                portfolio[d.currency].value += d.amount; // Simplified: value = amount
+            });
+
+            tbody.innerHTML = Object.entries(portfolio).map(([currency, data]) => `
+                <tr>
+                    <td>
+                        <i class="fab fa-${currency === 'BTC' ? 'bitcoin' : currency === 'ETH' ? 'ethereum' : 'dollar-sign'}" 
+                           style="color: ${currency === 'BTC' ? '#F7931A' : currency === 'ETH' ? '#627EEA' : '#26A17B'};"></i>
+                        ${currency}
+                    </td>
+                    <td>${data.amount.toFixed(4)} ${currency}</td>
+                    <td>$${data.value.toFixed(2)}</td>
+                    <td style="color: #0ECB81;">+2.3%</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateHistoryTable() {
+            const tbody = document.getElementById('historyTable');
+            
+            if (!currentUser?.transactions?.length) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">No transactions yet</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = currentUser.transactions.sort((a, b) => new Date(b.date) - new Date(a.date)).map(t => `
+                <tr>
+                    <td>${new Date(t.date).toLocaleDateString()}</td>
+                    <td>${t.type.replace('_', ' ')}</td>
+                    <td>$${t.amount}</td>
+                    <td><span style="color: ${t.status === 'completed' ? '#0ECB81' : '#F0B90B'};">${t.status}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        // ===== DEPOSIT =====
+        function loadWalletAddress() {
+            const crypto = document.getElementById('depositCrypto').value;
+            const addresses = JSON.parse(localStorage.getItem('walletAddresses'));
+            document.getElementById('walletAddress').textContent = addresses[crypto] || 'Address not set';
+        }
+
+        function handleDeposit(e) {
+            e.preventDefault();
+            
+            const amount = parseFloat(document.getElementById('depositAmount').value);
+            const crypto = document.getElementById('depositCrypto').value;
+            
+            if (amount < 10) {
+                alert('Minimum deposit is $10');
+                return;
+            }
+            
+            // Get wallet address
+            const addresses = JSON.parse(localStorage.getItem('walletAddresses'));
+            const walletAddress = addresses[crypto];
+            
+            // Add to pending deposits
+            const pendingDeposits = JSON.parse(localStorage.getItem('pendingDeposits'));
+            const depositRequest = {
+                id: Date.now(),
+                userId: currentUser.id,
+                userName: currentUser.name,
+                userEmail: currentUser.email,
+                amount,
+                currency: crypto,
+                walletAddress,
+                status: 'pending',
+                date: new Date().toISOString()
+            };
+            pendingDeposits.push(depositRequest);
+            localStorage.setItem('pendingDeposits', JSON.stringify(pendingDeposits));
+            
+            // Show message
+            alert(`Deposit Request Submitted!\n\nPlease send $${amount} worth of ${crypto} to:\n${walletAddress}\n\nYour account will be credited after admin confirmation.`);
+            
+            // Add to user deposits
+            if (!currentUser.deposits) currentUser.deposits = [];
+            currentUser.deposits.push({
+                amount,
+                currency: crypto,
+                status: 'pending',
+                date: new Date().toISOString()
+            });
+            
+            // Add to transactions
+            if (!currentUser.transactions) currentUser.transactions = [];
+            currentUser.transactions.push({
+                id: Date.now(),
+                type: 'deposit_request',
+                amount,
+                status: 'pending',
+                date: new Date().toISOString()
+            });
+            
+            // Update localStorage
+            const users = JSON.parse(localStorage.getItem('users'));
+            const userIndex = users.findIndex(u => u.id === currentUser.id);
+            users[userIndex] = currentUser;
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            updateUserUI();
+        }
+
+        function updateRecentDeposits() {
+            if (!currentUser?.deposits?.length) return;
+            
+            const tbody = document.getElementById('recentDeposits');
+            const recent = currentUser.deposits.slice(-3).reverse();
+            
+            tbody.innerHTML = recent.map(d => `
+                <tr>
+                    <td>${new Date(d.date).toLocaleDateString()}</td>
+                    <td>$${d.amount}</td>
+                    <td>${d.currency}</td>
+                    <td><span style="color: ${d.status === 'completed' ? '#0ECB81' : '#F0B90B'};">${d.status}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        // ===== ADMIN FUNCTIONS =====
+        function loadAdminPanel() {
+            const users = JSON.parse(localStorage.getItem('users'));
+            const usersList = document.getElementById('usersList');
+            const pendingDeposits = JSON.parse(localStorage.getItem('pendingDeposits'));
+            const walletAddresses = JSON.parse(localStorage.getItem('walletAddresses'));
+            
+            // Load wallet addresses into inputs
+            document.getElementById('btcAddress').value = walletAddresses.BTC;
+            document.getElementById('ethAddress').value = walletAddresses.ETH;
+            document.getElementById('usdtAddress').value = walletAddresses.USDT;
+            
+            // Calculate stats
+            const totalUsers = users.length;
+            const totalBalance = users.reduce((sum, u) => sum + u.balance, 0);
+            const totalDeposits = users.reduce((sum, u) => {
+                return sum + (u.deposits?.filter(d => d.status === 'completed').reduce((s, d) => s + d.amount, 0) || 0);
+            }, 0);
+            const activeUsers = users.filter(u => u.balance > 0).length;
+            
+            document.getElementById('totalUsers').textContent = totalUsers;
+            document.getElementById('totalBalanceAll').textContent = totalBalance.toFixed(2);
+            document.getElementById('totalDepositsAll').textContent = totalDeposits.toFixed(2);
+            document.getElementById('activeUsersCount').textContent = activeUsers;
+            
+            // Show users list
+            usersList.innerHTML = users.map(user => `
+                <div class="user-list-item">
+                    <div class="user-info">
+                        <strong>${user.name}</strong>
+                        <small>${user.email}</small><br>
+                        <small>Balance: $${user.balance.toFixed(2)} | Role: ${user.role}</small><br>
+                        <small>Joined: ${new Date(user.createdAt).toLocaleDateString()}</small>
+                    </div>
+                    <div class="user-actions">
+                        <button onclick="viewUserDetails(${user.id})" class="btn btn-outline" style="padding: 4px 8px; font-size: 11px;">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                        <button onclick="openEditModal(${user.id})" class="btn btn-primary" style="padding: 4px 8px; font-size: 11px;">
+                            <i class="fas fa-edit"></i> Edit Balance
+                        </button>
+                        ${user.role !== 'admin' ? `
+                            <button onclick="deleteUser(${user.id})" class="btn btn-danger" style="padding: 4px 8px; font-size: 11px;">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+            
+            // Show pending deposits
+            const pendingList = document.getElementById('pendingDepositsList');
+            if (pendingDeposits.length === 0) {
+                pendingList.innerHTML = '<tr><td colspan="5" style="text-align: center;">No pending deposits</td></tr>';
+            } else {
+                pendingList.innerHTML = pendingDeposits.map(deposit => `
+                    <tr>
+                        <td>${deposit.userName}<br><small>${deposit.userEmail}</small></td>
+                        <td>$${deposit.amount}</td>
+                        <td>${deposit.currency}</td>
+                        <td>${new Date(deposit.date).toLocaleString()}</td>
+                        <td>
+                            <button onclick="confirmDeposit(${deposit.id})" class="btn btn-success" style="padding: 4px 8px; font-size: 11px;">
+                                <i class="fas fa-check"></i> Confirm
+                            </button>
+                            <button onclick="rejectDeposit(${deposit.id})" class="btn btn-danger" style="padding: 4px 8px; font-size: 11px;">
+                                <i class="fas fa-times"></i> Reject
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function openEditModal(userId) {
+            const users = JSON.parse(localStorage.getItem('users'));
+            const user = users.find(u => u.id === userId);
+            
+            if (user) {
+                document.getElementById('editUserId').value = user.id;
+                document.getElementById('editUserName').value = user.name;
+                document.getElementById('editUserEmail').value = user.email;
+                document.getElementById('editCurrentBalance').value = user.balance;
+                document.getElementById('editNewBalance').value = user.balance;
+                showModal('editBalanceModal');
+            }
+        }
+
+        function handleEditBalance(e) {
+            e.preventDefault();
+            
+            const userId = parseInt(document.getElementById('editUserId').value);
+            const newBalance = parseFloat(document.getElementById('editNewBalance').value);
+            const reason = document.getElementById('editReason').value;
+            
+            const users = JSON.parse(localStorage.getItem('users'));
+            const userIndex = users.findIndex(u => u.id === userId);
+            
+            if (userIndex !== -1) {
+                const oldBalance = users[userIndex].balance;
+                users[userIndex].balance = newBalance;
+                
+                // Add transaction record
+                if (!users[userIndex].transactions) users[userIndex].transactions = [];
+                users[userIndex].transactions.push({
+                    id: Date.now(),
+                    type: 'admin_adjustment',
+                    amount: newBalance - oldBalance,
+                    status: 'completed',
+                    reason: reason,
+                    date: new Date().toISOString()
+                });
+                
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Update current user if it's the same
+                if (currentUser?.id === userId) {
+                    currentUser.balance = newBalance;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    updateUserUI();
+                }
+                
+                alert(`Balance updated for ${users[userIndex].name}\nNew Balance: $${newBalance.toFixed(2)}`);
+                closeModal('editBalanceModal');
+                loadAdminPanel();
+            }
+        }
+
+        function viewUserDetails(userId) {
+            const users = JSON.parse(localStorage.getItem('users'));
+            const user = users.find(u => u.id === userId);
+            
+            if (!user) return;
+            
+            const details = `
+                <div style="margin-bottom: 15px;">
+                    <p><strong>ID:</strong> ${user.id}</p>
+                    <p><strong>Name:</strong> ${user.name}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Balance:</strong> $${user.balance.toFixed(2)}</p>
+                    <p><strong>Role:</strong> ${user.role}</p>
+                    <p><strong>Joined:</strong> ${new Date(user.createdAt).toLocaleString()}</p>
+                </div>
+                <div>
+                    <h4 style="color: #F0B90B; margin-bottom: 10px;">Recent Transactions</h4>
+                    ${user.transactions?.slice(-3).map(t => `
+                        <div style="border-bottom: 1px solid #2B2F36; padding: 5px 0;">
+                            <small>${new Date(t.date).toLocaleDateString()} - ${t.type}</small><br>
+                            <small>Amount: $${t.amount} | Status: ${t.status}</small>
+                        </div>
+                    `).join('') || '<p>No transactions</p>'}
+                </div>
+            `;
+            
+            document.getElementById('userDetails').innerHTML = details;
+            showModal('viewUserModal');
+        }
+
+        function deleteUser(userId) {
+            if (!confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('users'));
+            const updatedUsers = users.filter(u => u.id !== userId);
+            
+            localStorage.setItem('users', JSON.stringify(updatedUsers));
+            
+            alert('User deleted successfully');
+            loadAdminPanel();
+        }
+
+        function confirmDeposit(depositId) {
+            const pendingDeposits = JSON.parse(localStorage.getItem('pendingDeposits'));
+            const depositIndex = pendingDeposits.findIndex(d => d.id === depositId);
+            
+            if (depositIndex === -1) return;
+            
+            const deposit = pendingDeposits[depositIndex];
+            
+            // Update user balance
+            const users = JSON.parse(localStorage.getItem('users'));
+            const userIndex = users.findIndex(u => u.id === deposit.userId);
+            
+            if (userIndex !== -1) {
+                users[userIndex].balance += deposit.amount;
+                
+                // Update deposit status
+                if (!users[userIndex].deposits) users[userIndex].deposits = [];
+                const userDeposit = users[userIndex].deposits.find(d => 
+                    d.amount === deposit.amount && 
+                    d.currency === deposit.currency && 
+                    d.status === 'pending'
+                );
+                if (userDeposit) userDeposit.status = 'completed';
+                
+                // Add transaction
+                if (!users[userIndex].transactions) users[userIndex].transactions = [];
+                users[userIndex].transactions.push({
+                    id: Date.now(),
+                    type: 'deposit',
+                    amount: deposit.amount,
+                    status: 'completed',
+                    date: new Date().toISOString()
+                });
+                
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Update current user if it's the same
+                if (currentUser?.id === deposit.userId) {
+                    currentUser = users[userIndex];
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    updateUserUI();
+                }
+            }
+            
+            // Remove from pending
+            pendingDeposits.splice(depositIndex, 1);
+            localStorage.setItem('pendingDeposits', JSON.stringify(pendingDeposits));
+            
+            alert(`Deposit of $${deposit.amount} confirmed for ${deposit.userName}`);
+            loadAdminPanel();
+        }
+
+        function rejectDeposit(depositId) {
+            const pendingDeposits = JSON.parse(localStorage.getItem('pendingDeposits'));
+            const depositIndex = pendingDeposits.findIndex(d => d.id === depositId);
+            
+            if (depositIndex === -1) return;
+            
+            const deposit = pendingDeposits[depositIndex];
+            
+            // Update user deposit status
+            const users = JSON.parse(localStorage.getItem('users'));
+            const userIndex = users.findIndex(u => u.id === deposit.userId);
+            
+            if (userIndex !== -1) {
+                const userDeposit = users[userIndex].deposits?.find(d => 
+                    d.amount === deposit.amount && 
+                    d.currency === deposit.currency && 
+                    d.status === 'pending'
+                );
+                if (userDeposit) userDeposit.status = 'rejected';
+                
+                // Add transaction
+                if (!users[userIndex].transactions) users[userIndex].transactions = [];
+                users[userIndex].transactions.push({
+                    id: Date.now(),
+                    type: 'deposit_rejected',
+                    amount: deposit.amount,
+                    status: 'rejected',
+                    date: new Date().toISOString()
+                });
+                
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Update current user if it's the same
+                if (currentUser?.id === deposit.userId) {
+                    currentUser = users[userIndex];
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    updateUserUI();
+                }
+            }
+            
+            // Remove from pending
+            pendingDeposits.splice(depositIndex, 1);
+            localStorage.setItem('pendingDeposits', JSON.stringify(pendingDeposits));
+            
+            alert(`Deposit of $${deposit.amount} rejected`);
+            loadAdminPanel();
+        }
+
+        function updateWalletAddress(currency) {
+            const addresses = JSON.parse(localStorage.getItem('walletAddresses'));
+            
+            if (currency === 'BTC') {
+                addresses.BTC = document.getElementById('btcAddress').value;
+            } else if (currency === 'ETH') {
+                addresses.ETH = document.getElementById('ethAddress').value;
+            } else if (currency === 'USDT') {
+                addresses.USDT = document.getElementById('usdtAddress').value;
+            }
+            
+            localStorage.setItem('walletAddresses', JSON.stringify(addresses));
+            alert(`${currency} address updated successfully!`);
+        }
+
+        // ===== TABS =====
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const tabName = tab.dataset.tab;
+                document.getElementById(tabName + 'Tab').classList.add('active');
+            });
+        });
+
+        // ===== EVENT LISTENERS =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in
+            if (authToken) {
+                const savedUser = localStorage.getItem('currentUser');
+                if (savedUser) {
+                    currentUser = JSON.parse(savedUser);
+                    updateUserUI();
+                    showPage('userDashboard');
+                    
+                    if (currentUser.role === 'admin') {
+                        document.getElementById('adminPanelBtn').style.display = 'block';
+                    }
+                }
+            }
+            
+            // Load wallet address on deposit page
+            loadWalletAddress();
+            document.getElementById('depositCrypto').addEventListener('change', loadWalletAddress);
+        });
+
+        // Navigation
+        document.getElementById('homeLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('landingPage');
+        });
+
+        document.getElementById('getStartedBtn').addEventListener('click', () => {
+            showPage('signupPage');
+        });
+
+        document.getElementById('loginNavBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('loginPage');
+        });
+
+        document.getElementById('signupNavBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('signupPage');
+        });
+
+        document.getElementById('toLoginLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('loginPage');
+        });
+
+        document.getElementById('toSignupLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('signupPage');
+        });
+
+        // Form submissions
+        document.getElementById('signupForm').addEventListener('submit', handleSignup);
+        document.getElementById('loginForm').addEventListener('submit', handleLogin);
+        document.getElementById('depositForm').addEventListener('submit', handleDeposit);
+        document.getElementById('editBalanceForm').addEventListener('submit', handleEditBalance);
+
+        // Dashboard navigation
+        document.querySelectorAll('.sidebar-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+                link.classList.add('active');
+                
+                const page = link.dataset.page;
+                document.querySelectorAll('.main-content > div').forEach(div => {
+                    div.style.display = 'none';
+                });
+                
+                if (page === 'overview') {
+                    document.getElementById('overviewSection').style.display = 'block';
+                } else if (page === 'deposit') {
+                    document.getElementById('depositSection').style.display = 'block';
+                    loadWalletAddress();
+                } else if (page === 'history') {
+                    document.getElementById('historySection').style.display = 'block';
+                    updateHistoryTable();
+                } else if (page === 'portfolio') {
+                    document.getElementById('overviewSection').style.display = 'block';
+                }
+            });
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('currentUser');
+            currentUser = null;
+            authToken = null;
+            showPage('landingPage');
+        });
+
+        // Admin panel
+        document.getElementById('adminPanelBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            loadAdminPanel();
+            showPage('adminPanel');
+        });
+
+        document.getElementById('backToUserDashboard').addEventListener('click', () => {
+            showPage('userDashboard');
+        });
+
+        // Copy wallet address
+        document.getElementById('copyAddressBtn').addEventListener('click', () => {
+            const address = document.getElementById('walletAddress').textContent;
+            navigator.clipboard.writeText(address);
+            alert('Address copied to clipboard!');
+        });
+
+        // Markets and Trade links (placeholder)
+        document.getElementById('marketsLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Markets page coming soon!');
+        });
+
+        document.getElementById('tradeLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Trading page coming soon!');
+        });
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
