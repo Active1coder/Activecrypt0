@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoPro | Trading Platform</title>
+    <title>Active Investments | Trading Platform</title>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -107,18 +107,13 @@
             color: #0B0E11;
         }
 
-        .btn-danger {
-            background: #CF304A;
+        .btn-success {
+            background: #25D366;
             color: white;
         }
 
-        .btn-danger:hover {
-            background: #B32C43;
-        }
-
-        .btn-success {
-            background: #0ECB81;
-            color: #0B0E11;
+        .btn-success:hover {
+            background: #128C7E;
         }
 
         /* ===== PAGES ===== */
@@ -148,6 +143,13 @@
             color: #848E9C;
             max-width: 600px;
             margin: 0 auto 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         /* ===== AUTH CARDS ===== */
@@ -303,10 +305,6 @@
             font-size: 14px;
         }
 
-        tr:last-child td {
-            border-bottom: none;
-        }
-
         /* ===== WALLET ADDRESS ===== */
         .wallet-box {
             background: #0B0E11;
@@ -420,11 +418,6 @@
             flex-wrap: wrap;
         }
 
-        .user-actions button {
-            padding: 6px 12px;
-            font-size: 12px;
-        }
-
         /* ===== MODAL ===== */
         .modal {
             display: none;
@@ -455,51 +448,30 @@
             overflow-y: auto;
         }
 
-        /* ===== TABS ===== */
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #2B2F36;
-            padding-bottom: 10px;
-        }
-
-        .tab {
-            padding: 8px 16px;
-            cursor: pointer;
-            color: #848E9C;
-            border-radius: 4px;
-        }
-
-        .tab.active {
-            background: #2B2F36;
-            color: #F0B90B;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* ===== ALERT ===== */
-        .alert {
-            padding: 12px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .alert-success {
-            background: #0ECB81;
-            color: #0B0E11;
-        }
-
-        .alert-danger {
-            background: #CF304A;
+        /* ===== FLOATING WHATSAPP BUTTON ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
             color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128C7E;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -524,33 +496,40 @@
                 grid-template-columns: 1fr;
             }
             
-            .user-list-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .user-actions {
-                width: 100%;
-                justify-content: flex-end;
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
+    <!-- REPLACE WITH YOUR ACTUAL WHATSAPP NUMBER -->
+    <a href="https://wa.me/2348130098476?text=Hello%20I%20need%20help%20with%20Active%20Investments" 
+       class="whatsapp-float" 
+       target="_blank"
+       title="Contact Customer Care">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-content">
                 <a href="#" class="logo" id="homeLink">
-                    <i class="fab fa-bitcoin"></i>
-                    <span>CryptoPro</span>
+                    <i class="fas fa-chart-line"></i>
+                    <span>Active Investments</span>
                 </a>
                 
                 <div class="nav-links">
                     <a href="#" id="marketsLink">Markets</a>
                     <a href="#" id="tradeLink">Trade</a>
                     <a href="#" id="loginNavBtn">Login</a>
-                    <a href="#" id="signupNavBtn" class="btn btn-primary">Sign Up</a>
+                    <a href="#" id="signupNavBtn" class="btn btn-primary">Get Started</a>
                 </div>
             </div>
         </div>
@@ -562,9 +541,12 @@
         <div id="landingPage" class="page active">
             <div class="hero">
                 <div class="container">
-                    <h1>Trade Cryptocurrency</h1>
-                    <p>Buy, sell, and trade Bitcoin, Ethereum, and more with advanced tools and features.</p>
-                    <button class="btn btn-primary" id="getStartedBtn">Get Started Now</button>
+                    <h1>Active Investments</h1>
+                    <p>Start trading Bitcoin, Ethereum, and other cryptocurrencies with our secure platform. Professional tools for serious investors.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="getStartedBtn">Get Started Now</button>
+                        <button class="btn btn-outline" id="loginHeroBtn">Login</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -586,6 +568,10 @@
                         <div class="form-group">
                             <label>Password</label>
                             <input type="password" id="signupPassword" class="form-control" placeholder="••••••••" minlength="8" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone (Optional)</label>
+                            <input type="tel" id="signupPhone" class="form-control" placeholder="+1234567890">
                         </div>
                         <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
                             Create Account
@@ -771,7 +757,7 @@
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
                         <div>
                             <h2><i class="fas fa-user-shield"></i> Admin Panel</h2>
-                            <p style="color: #848E9C;">Manage users, balances, and deposit addresses</p>
+                            <p style="color: #848E9C;">Manage all users, balances, and deposit addresses</p>
                         </div>
                         <button class="btn btn-outline" id="backToUserDashboard">
                             <i class="fas fa-arrow-left"></i> Back to Dashboard
@@ -779,92 +765,73 @@
                     </div>
                 </div>
                 
-                <div class="tabs">
-                    <div class="tab active" data-tab="users">Users Management</div>
-                    <div class="tab" data-tab="addresses">Deposit Addresses</div>
-                    <div class="tab" data-tab="stats">Platform Stats</div>
-                </div>
-                
-                <!-- Users Tab -->
-                <div class="tab-content active" id="usersTab">
-                    <div class="admin-card">
-                        <h3><i class="fas fa-users"></i> All Users</h3>
-                        <div id="usersList"></div>
+                <!-- Admin Stats -->
+                <div class="stats-grid" style="margin-bottom: 30px;">
+                    <div class="stat-card">
+                        <h3>Total Users</h3>
+                        <div class="value" id="totalUsers">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Balance</h3>
+                        <div class="value">$<span id="totalBalanceAll">0</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Deposits</h3>
+                        <div class="value">$<span id="totalDepositsAll">0</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending Deposits</h3>
+                        <div class="value" id="pendingDepositsCount">0</div>
                     </div>
                 </div>
                 
-                <!-- Addresses Tab -->
-                <div class="tab-content" id="addressesTab">
+                <!-- Users List -->
+                <div class="admin-card">
+                    <h3><i class="fas fa-users"></i> All Registered Users</h3>
+                    <div id="usersList"></div>
+                </div>
+                
+                <!-- Pending Deposits -->
+                <div class="admin-card">
+                    <h3><i class="fas fa-clock"></i> Pending Deposits</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Amount</th>
+                                    <th>Currency</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pendingDepositsList">
+                                <tr>
+                                    <td colspan="5" style="text-align: center;">No pending deposits</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Wallet Address Management -->
+                <div class="admin-card">
+                    <h3><i class="fas fa-wallet"></i> Deposit Addresses</h3>
                     <div class="admin-grid">
-                        <div class="admin-card">
-                            <h3><i class="fab fa-bitcoin"></i> Bitcoin Address</h3>
-                            <div class="form-group">
-                                <label>BTC Deposit Address</label>
-                                <input type="text" id="btcAddress" class="form-control" value="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">
-                            </div>
-                            <button class="btn btn-primary" onclick="updateWalletAddress('BTC')">Update BTC Address</button>
+                        <div>
+                            <label>BTC Address</label>
+                            <input type="text" id="btcAddress" class="form-control" value="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">
+                            <button class="btn btn-primary" style="margin-top: 10px;" onclick="updateWalletAddress('BTC')">Update BTC</button>
                         </div>
-                        
-                        <div class="admin-card">
-                            <h3><i class="fab fa-ethereum"></i> Ethereum Address</h3>
-                            <div class="form-group">
-                                <label>ETH Deposit Address</label>
-                                <input type="text" id="ethAddress" class="form-control" value="0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a">
-                            </div>
-                            <button class="btn btn-primary" onclick="updateWalletAddress('ETH')">Update ETH Address</button>
+                        <div>
+                            <label>ETH Address</label>
+                            <input type="text" id="ethAddress" class="form-control" value="0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a">
+                            <button class="btn btn-primary" style="margin-top: 10px;" onclick="updateWalletAddress('ETH')">Update ETH</button>
                         </div>
-                        
-                        <div class="admin-card">
-                            <h3><i class="fas fa-dollar-sign"></i> USDT Address</h3>
-                            <div class="form-group">
-                                <label>USDT Deposit Address</label>
-                                <input type="text" id="usdtAddress" class="form-control" value="0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a">
-                            </div>
-                            <button class="btn btn-primary" onclick="updateWalletAddress('USDT')">Update USDT Address</button>
-                        </div>
-                    </div>
-                    
-                    <div class="admin-card">
-                        <h3><i class="fas fa-history"></i> Pending Deposits</h3>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>User</th>
-                                        <th>Amount</th>
-                                        <th>Currency</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="pendingDepositsList">
-                                    <tr>
-                                        <td colspan="5" style="text-align: center;">No pending deposits</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Stats Tab -->
-                <div class="tab-content" id="statsTab">
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <h3>Total Users</h3>
-                            <div class="value" id="totalUsers">0</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Total Balance</h3>
-                            <div class="value">$<span id="totalBalanceAll">0</span></div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Total Deposits</h3>
-                            <div class="value">$<span id="totalDepositsAll">0</span></div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Active Users</h3>
-                            <div class="value" id="activeUsersCount">0</div>
+                        <div>
+                            <label>USDT Address</label>
+                            <input type="text" id="usdtAddress" class="form-control" value="0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a">
+                            <button class="btn btn-primary" style="margin-top: 10px;" onclick="updateWalletAddress('USDT')">Update USDT</button>
                         </div>
                     </div>
                 </div>
@@ -872,17 +839,12 @@
         </div>
     </div>
 
-    <!-- ===== MODALS ===== -->
-    
-    <!-- Edit Balance Modal -->
+    <!-- ===== EDIT BALANCE MODAL ===== -->
     <div class="modal" id="editBalanceModal">
         <div class="modal-content">
             <h3 style="color: #F0B90B; margin-bottom: 20px;">Edit User Balance</h3>
             <form id="editBalanceForm">
-                <div class="form-group">
-                    <label>User ID</label>
-                    <input type="text" id="editUserId" class="form-control" readonly>
-                </div>
+                <input type="hidden" id="editUserId">
                 <div class="form-group">
                     <label>User Name</label>
                     <input type="text" id="editUserName" class="form-control" readonly>
@@ -900,12 +862,11 @@
                     <input type="number" id="editNewBalance" class="form-control" step="0.01" required>
                 </div>
                 <div class="form-group">
-                    <label>Reason for Change</label>
+                    <label>Reason</label>
                     <select id="editReason" class="form-control">
-                        <option value="manual">Manual Adjustment</option>
                         <option value="deposit">Deposit Confirmation</option>
                         <option value="bonus">Bonus</option>
-                        <option value="correction">Error Correction</option>
+                        <option value="adjustment">Manual Adjustment</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Update Balance</button>
@@ -914,50 +875,31 @@
         </div>
     </div>
 
-    <!-- View User Details Modal -->
-    <div class="modal" id="viewUserModal">
-        <div class="modal-content">
-            <h3 style="color: #F0B90B; margin-bottom: 20px;">User Details</h3>
-            <div id="userDetails"></div>
-            <button class="btn btn-outline" style="width: 100%; margin-top: 20px;" onclick="closeModal('viewUserModal')">Close</button>
-        </div>
-    </div>
-
-    <!-- ===== COMPLETE JAVASCRIPT ===== -->
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ===== DATA STORAGE =====
+        // ===== INITIALIZATION =====
         let currentUser = null;
         let authToken = localStorage.getItem('authToken');
-        
+
         // Initialize the system
         function initSystem() {
-            // Initialize users if not exists
+            // Initialize users array if not exists
             if (!localStorage.getItem('users')) {
-                const demoUsers = [
+                const users = [
                     {
                         id: 1,
                         name: 'Admin User',
-                        email: 'admin@cryptopro.com',
+                        email: 'admin@activeinvestments.com',
                         password: btoa('admin123'),
+                        phone: '+1234567890',
                         balance: 50000,
                         role: 'admin',
                         deposits: [],
                         transactions: [],
                         createdAt: new Date().toISOString()
-                    },
-                    {
-                        id: 2,
-                        name: 'John Doe',
-                        email: 'john@example.com',
-                        password: btoa('password123'),
-                        balance: 15000,
-                        role: 'user',
-                        deposits: [],
-                        transactions: [],
-                        createdAt: new Date().toISOString()
                     }
                 ];
-                localStorage.setItem('users', JSON.stringify(demoUsers));
+                localStorage.setItem('users', JSON.stringify(users));
             }
 
             // Initialize wallet addresses
@@ -976,7 +918,6 @@
             }
         }
 
-        // Call init
         initSystem();
 
         // ===== PAGE MANAGEMENT =====
@@ -1002,19 +943,23 @@
             const name = document.getElementById('signupName').value;
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
+            const phone = document.getElementById('signupPhone').value;
             
             const users = JSON.parse(localStorage.getItem('users'));
             
+            // Check if email already exists
             if (users.find(u => u.email === email)) {
-                alert('User already exists!');
+                alert('Email already registered! Please use a different email.');
                 return;
             }
             
+            // Create new user
             const newUser = {
                 id: Date.now(),
                 name,
                 email,
                 password: btoa(password),
+                phone,
                 balance: 1000, // $1000 welcome bonus
                 role: 'user',
                 deposits: [],
@@ -1028,6 +973,7 @@
                 createdAt: new Date().toISOString()
             };
             
+            // Add to users array
             users.push(newUser);
             localStorage.setItem('users', JSON.stringify(users));
             
@@ -1052,7 +998,7 @@
             const user = users.find(u => u.email === email && atob(u.password) === password);
             
             if (!user) {
-                alert('Invalid credentials!');
+                alert('Invalid email or password!');
                 return;
             }
             
@@ -1080,13 +1026,8 @@
                 document.getElementById('totalDeposits').textContent = totalDeposits.toFixed(2);
                 document.getElementById('activeInvestments').textContent = currentUser.deposits?.length || 0;
                 
-                // Update portfolio table
                 updatePortfolioTable();
-                
-                // Update history
                 updateHistoryTable();
-                
-                // Update recent deposits
                 updateRecentDeposits();
             }
         }
@@ -1109,7 +1050,7 @@
                     };
                 }
                 portfolio[d.currency].amount += d.amount;
-                portfolio[d.currency].value += d.amount; // Simplified: value = amount
+                portfolio[d.currency].value += d.amount;
             });
 
             tbody.innerHTML = Object.entries(portfolio).map(([currency, data]) => `
@@ -1144,6 +1085,22 @@
             `).join('');
         }
 
+        function updateRecentDeposits() {
+            if (!currentUser?.deposits?.length) return;
+            
+            const tbody = document.getElementById('recentDeposits');
+            const recent = currentUser.deposits.slice(-3).reverse();
+            
+            tbody.innerHTML = recent.map(d => `
+                <tr>
+                    <td>${new Date(d.date).toLocaleDateString()}</td>
+                    <td>$${d.amount}</td>
+                    <td>${d.currency}</td>
+                    <td><span style="color: ${d.status === 'completed' ? '#0ECB81' : '#F0B90B'};">${d.status}</span></td>
+                </tr>
+            `).join('');
+        }
+
         // ===== DEPOSIT =====
         function loadWalletAddress() {
             const crypto = document.getElementById('depositCrypto').value;
@@ -1162,7 +1119,6 @@
                 return;
             }
             
-            // Get wallet address
             const addresses = JSON.parse(localStorage.getItem('walletAddresses'));
             const walletAddress = addresses[crypto];
             
@@ -1181,9 +1137,6 @@
             };
             pendingDeposits.push(depositRequest);
             localStorage.setItem('pendingDeposits', JSON.stringify(pendingDeposits));
-            
-            // Show message
-            alert(`Deposit Request Submitted!\n\nPlease send $${amount} worth of ${crypto} to:\n${walletAddress}\n\nYour account will be credited after admin confirmation.`);
             
             // Add to user deposits
             if (!currentUser.deposits) currentUser.deposits = [];
@@ -1204,58 +1157,38 @@
                 date: new Date().toISOString()
             });
             
-            // Update localStorage
+            // Update users array
             const users = JSON.parse(localStorage.getItem('users'));
             const userIndex = users.findIndex(u => u.id === currentUser.id);
             users[userIndex] = currentUser;
             localStorage.setItem('users', JSON.stringify(users));
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             
+            alert(`Deposit Request Submitted!\n\nSend $${amount} worth of ${crypto} to:\n${walletAddress}`);
             updateUserUI();
-        }
-
-        function updateRecentDeposits() {
-            if (!currentUser?.deposits?.length) return;
-            
-            const tbody = document.getElementById('recentDeposits');
-            const recent = currentUser.deposits.slice(-3).reverse();
-            
-            tbody.innerHTML = recent.map(d => `
-                <tr>
-                    <td>${new Date(d.date).toLocaleDateString()}</td>
-                    <td>$${d.amount}</td>
-                    <td>${d.currency}</td>
-                    <td><span style="color: ${d.status === 'completed' ? '#0ECB81' : '#F0B90B'};">${d.status}</span></td>
-                </tr>
-            `).join('');
         }
 
         // ===== ADMIN FUNCTIONS =====
         function loadAdminPanel() {
             const users = JSON.parse(localStorage.getItem('users'));
-            const usersList = document.getElementById('usersList');
             const pendingDeposits = JSON.parse(localStorage.getItem('pendingDeposits'));
             const walletAddresses = JSON.parse(localStorage.getItem('walletAddresses'));
             
-            // Load wallet addresses into inputs
+            // Update stats
+            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('totalBalanceAll').textContent = users.reduce((sum, u) => sum + u.balance, 0).toFixed(2);
+            document.getElementById('totalDepositsAll').textContent = users.reduce((sum, u) => {
+                return sum + (u.deposits?.filter(d => d.status === 'completed').reduce((s, d) => s + d.amount, 0) || 0);
+            }, 0).toFixed(2);
+            document.getElementById('pendingDepositsCount').textContent = pendingDeposits.length;
+            
+            // Load wallet addresses
             document.getElementById('btcAddress').value = walletAddresses.BTC;
             document.getElementById('ethAddress').value = walletAddresses.ETH;
             document.getElementById('usdtAddress').value = walletAddresses.USDT;
             
-            // Calculate stats
-            const totalUsers = users.length;
-            const totalBalance = users.reduce((sum, u) => sum + u.balance, 0);
-            const totalDeposits = users.reduce((sum, u) => {
-                return sum + (u.deposits?.filter(d => d.status === 'completed').reduce((s, d) => s + d.amount, 0) || 0);
-            }, 0);
-            const activeUsers = users.filter(u => u.balance > 0).length;
-            
-            document.getElementById('totalUsers').textContent = totalUsers;
-            document.getElementById('totalBalanceAll').textContent = totalBalance.toFixed(2);
-            document.getElementById('totalDepositsAll').textContent = totalDeposits.toFixed(2);
-            document.getElementById('activeUsersCount').textContent = activeUsers;
-            
-            // Show users list
+            // Show ALL users (including newly registered ones)
+            const usersList = document.getElementById('usersList');
             usersList.innerHTML = users.map(user => `
                 <div class="user-list-item">
                     <div class="user-info">
@@ -1265,14 +1198,11 @@
                         <small>Joined: ${new Date(user.createdAt).toLocaleDateString()}</small>
                     </div>
                     <div class="user-actions">
-                        <button onclick="viewUserDetails(${user.id})" class="btn btn-outline" style="padding: 4px 8px; font-size: 11px;">
-                            <i class="fas fa-eye"></i> View
-                        </button>
-                        <button onclick="openEditModal(${user.id})" class="btn btn-primary" style="padding: 4px 8px; font-size: 11px;">
+                        <button onclick="openEditModal(${user.id})" class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">
                             <i class="fas fa-edit"></i> Edit Balance
                         </button>
                         ${user.role !== 'admin' ? `
-                            <button onclick="deleteUser(${user.id})" class="btn btn-danger" style="padding: 4px 8px; font-size: 11px;">
+                            <button onclick="deleteUser(${user.id})" class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">
                                 <i class="fas fa-trash"></i> Delete
                             </button>
                         ` : ''}
@@ -1292,12 +1222,8 @@
                         <td>${deposit.currency}</td>
                         <td>${new Date(deposit.date).toLocaleString()}</td>
                         <td>
-                            <button onclick="confirmDeposit(${deposit.id})" class="btn btn-success" style="padding: 4px 8px; font-size: 11px;">
-                                <i class="fas fa-check"></i> Confirm
-                            </button>
-                            <button onclick="rejectDeposit(${deposit.id})" class="btn btn-danger" style="padding: 4px 8px; font-size: 11px;">
-                                <i class="fas fa-times"></i> Reject
-                            </button>
+                            <button onclick="confirmDeposit(${deposit.id})" class="btn btn-success" style="padding: 5px 10px; font-size: 12px;">Confirm</button>
+                            <button onclick="rejectDeposit(${deposit.id})" class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">Reject</button>
                         </td>
                     </tr>
                 `).join('');
@@ -1336,10 +1262,9 @@
                 if (!users[userIndex].transactions) users[userIndex].transactions = [];
                 users[userIndex].transactions.push({
                     id: Date.now(),
-                    type: 'admin_adjustment',
+                    type: reason,
                     amount: newBalance - oldBalance,
                     status: 'completed',
-                    reason: reason,
                     date: new Date().toISOString()
                 });
                 
@@ -1347,7 +1272,7 @@
                 
                 // Update current user if it's the same
                 if (currentUser?.id === userId) {
-                    currentUser.balance = newBalance;
+                    currentUser = users[userIndex];
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
                     updateUserUI();
                 }
@@ -1358,44 +1283,11 @@
             }
         }
 
-        function viewUserDetails(userId) {
-            const users = JSON.parse(localStorage.getItem('users'));
-            const user = users.find(u => u.id === userId);
-            
-            if (!user) return;
-            
-            const details = `
-                <div style="margin-bottom: 15px;">
-                    <p><strong>ID:</strong> ${user.id}</p>
-                    <p><strong>Name:</strong> ${user.name}</p>
-                    <p><strong>Email:</strong> ${user.email}</p>
-                    <p><strong>Balance:</strong> $${user.balance.toFixed(2)}</p>
-                    <p><strong>Role:</strong> ${user.role}</p>
-                    <p><strong>Joined:</strong> ${new Date(user.createdAt).toLocaleString()}</p>
-                </div>
-                <div>
-                    <h4 style="color: #F0B90B; margin-bottom: 10px;">Recent Transactions</h4>
-                    ${user.transactions?.slice(-3).map(t => `
-                        <div style="border-bottom: 1px solid #2B2F36; padding: 5px 0;">
-                            <small>${new Date(t.date).toLocaleDateString()} - ${t.type}</small><br>
-                            <small>Amount: $${t.amount} | Status: ${t.status}</small>
-                        </div>
-                    `).join('') || '<p>No transactions</p>'}
-                </div>
-            `;
-            
-            document.getElementById('userDetails').innerHTML = details;
-            showModal('viewUserModal');
-        }
-
         function deleteUser(userId) {
-            if (!confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
-                return;
-            }
+            if (!confirm('Are you sure you want to delete this user?')) return;
             
             const users = JSON.parse(localStorage.getItem('users'));
             const updatedUsers = users.filter(u => u.id !== userId);
-            
             localStorage.setItem('users', JSON.stringify(updatedUsers));
             
             alert('User deleted successfully');
@@ -1418,11 +1310,8 @@
                 users[userIndex].balance += deposit.amount;
                 
                 // Update deposit status
-                if (!users[userIndex].deposits) users[userIndex].deposits = [];
-                const userDeposit = users[userIndex].deposits.find(d => 
-                    d.amount === deposit.amount && 
-                    d.currency === deposit.currency && 
-                    d.status === 'pending'
+                const userDeposit = users[userIndex].deposits?.find(d => 
+                    d.amount === deposit.amount && d.status === 'pending'
                 );
                 if (userDeposit) userDeposit.status = 'completed';
                 
@@ -1438,11 +1327,10 @@
                 
                 localStorage.setItem('users', JSON.stringify(users));
                 
-                // Update current user if it's the same
+                // Update current user
                 if (currentUser?.id === deposit.userId) {
                     currentUser = users[userIndex];
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                    updateUserUI();
                 }
             }
             
@@ -1462,72 +1350,37 @@
             
             const deposit = pendingDeposits[depositIndex];
             
-            // Update user deposit status
+            // Update deposit status
             const users = JSON.parse(localStorage.getItem('users'));
             const userIndex = users.findIndex(u => u.id === deposit.userId);
             
             if (userIndex !== -1) {
                 const userDeposit = users[userIndex].deposits?.find(d => 
-                    d.amount === deposit.amount && 
-                    d.currency === deposit.currency && 
-                    d.status === 'pending'
+                    d.amount === deposit.amount && d.status === 'pending'
                 );
                 if (userDeposit) userDeposit.status = 'rejected';
                 
-                // Add transaction
-                if (!users[userIndex].transactions) users[userIndex].transactions = [];
-                users[userIndex].transactions.push({
-                    id: Date.now(),
-                    type: 'deposit_rejected',
-                    amount: deposit.amount,
-                    status: 'rejected',
-                    date: new Date().toISOString()
-                });
-                
                 localStorage.setItem('users', JSON.stringify(users));
-                
-                // Update current user if it's the same
-                if (currentUser?.id === deposit.userId) {
-                    currentUser = users[userIndex];
-                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                    updateUserUI();
-                }
             }
             
             // Remove from pending
             pendingDeposits.splice(depositIndex, 1);
             localStorage.setItem('pendingDeposits', JSON.stringify(pendingDeposits));
             
-            alert(`Deposit of $${deposit.amount} rejected`);
+            alert(`Deposit rejected`);
             loadAdminPanel();
         }
 
         function updateWalletAddress(currency) {
             const addresses = JSON.parse(localStorage.getItem('walletAddresses'));
             
-            if (currency === 'BTC') {
-                addresses.BTC = document.getElementById('btcAddress').value;
-            } else if (currency === 'ETH') {
-                addresses.ETH = document.getElementById('ethAddress').value;
-            } else if (currency === 'USDT') {
-                addresses.USDT = document.getElementById('usdtAddress').value;
-            }
+            if (currency === 'BTC') addresses.BTC = document.getElementById('btcAddress').value;
+            else if (currency === 'ETH') addresses.ETH = document.getElementById('ethAddress').value;
+            else if (currency === 'USDT') addresses.USDT = document.getElementById('usdtAddress').value;
             
             localStorage.setItem('walletAddresses', JSON.stringify(addresses));
             alert(`${currency} address updated successfully!`);
         }
-
-        // ===== TABS =====
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                tab.classList.add('active');
-                const tabName = tab.dataset.tab;
-                document.getElementById(tabName + 'Tab').classList.add('active');
-            });
-        });
 
         // ===== EVENT LISTENERS =====
         document.addEventListener('DOMContentLoaded', () => {
@@ -1558,6 +1411,10 @@
 
         document.getElementById('getStartedBtn').addEventListener('click', () => {
             showPage('signupPage');
+        });
+
+        document.getElementById('loginHeroBtn').addEventListener('click', () => {
+            showPage('loginPage');
         });
 
         document.getElementById('loginNavBtn').addEventListener('click', (e) => {
@@ -1606,9 +1463,6 @@
                     loadWalletAddress();
                 } else if (page === 'history') {
                     document.getElementById('historySection').style.display = 'block';
-                    updateHistoryTable();
-                } else if (page === 'portfolio') {
-                    document.getElementById('overviewSection').style.display = 'block';
                 }
             });
         });
@@ -1618,7 +1472,6 @@
             localStorage.removeItem('authToken');
             localStorage.removeItem('currentUser');
             currentUser = null;
-            authToken = null;
             showPage('landingPage');
         });
 
@@ -1640,6 +1493,15 @@
             alert('Address copied to clipboard!');
         });
 
+        // Close modals
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
         // Markets and Trade links (placeholder)
         document.getElementById('marketsLink').addEventListener('click', (e) => {
             e.preventDefault();
@@ -1649,15 +1511,6 @@
         document.getElementById('tradeLink').addEventListener('click', (e) => {
             e.preventDefault();
             alert('Trading page coming soon!');
-        });
-
-        // Close modal when clicking outside
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                }
-            });
         });
     </script>
 </body>
