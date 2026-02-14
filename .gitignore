@@ -1,18 +1,18 @@
-# Dependencies (if you add npm later)
+# Dependencies
 node_modules/
 package-lock.json
 
-# Environment variables
+# Environment
 .env
 .env.local
 
-# IDE files
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
 
