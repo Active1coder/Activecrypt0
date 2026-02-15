@@ -509,7 +509,7 @@
 <body>
     <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
     <!-- REPLACE WITH YOUR ACTUAL WHATSAPP NUMBER -->
-    <a href="https://wa.me/2348130098476?text=Hello%20I%20need%20help%20with%20Active%20Investments" 
+    <a href="https://wa.me/2348123456789?text=Hello%20I%20need%20help%20with%20Active%20Investments" 
        class="whatsapp-float" 
        target="_blank"
        title="Contact Customer Care">
@@ -765,7 +765,7 @@
                     </div>
                 </div>
                 
-                <!-- Admin Stats -->
+                <!-- Admin Stats - Always shows current data -->
                 <div class="stats-grid" style="margin-bottom: 30px;">
                     <div class="stat-card">
                         <h3>Total Users</h3>
@@ -785,9 +785,9 @@
                     </div>
                 </div>
                 
-                <!-- Users List -->
+                <!-- Users List - Shows ALL users including new ones -->
                 <div class="admin-card">
-                    <h3><i class="fas fa-users"></i> All Registered Users</h3>
+                    <h3><i class="fas fa-users"></i> All Registered Users (Last Updated: <span id="usersUpdateTime"></span>)</h3>
                     <div id="usersList"></div>
                 </div>
                 
@@ -875,13 +875,13 @@
         </div>
     </div>
 
-    <!-- ===== JAVASCRIPT ===== -->
+    <!-- ===== FIXED JAVASCRIPT WITH PROPER USER TRACKING ===== -->
     <script>
         // ===== INITIALIZATION =====
         let currentUser = null;
         let authToken = localStorage.getItem('authToken');
 
-        // Initialize the system
+        // Initialize the system with proper data structure
         function initSystem() {
             // Initialize users array if not exists
             if (!localStorage.getItem('users')) {
@@ -895,11 +895,20 @@
                         balance: 50000,
                         role: 'admin',
                         deposits: [],
-                        transactions: [],
+                        transactions: [{
+                            id: Date.now(),
+                            type: 'welcome_bonus',
+                            amount: 50000,
+                            status: 'completed',
+                            date: new Date().toISOString()
+                        }],
                         createdAt: new Date().toISOString()
                     }
                 ];
                 localStorage.setItem('users', JSON.stringify(users));
+                console.log('System initialized with admin user');
+            } else {
+                console.log('Users loaded:', JSON.parse(localStorage.getItem('users')).length, 'users found');
             }
 
             // Initialize wallet addresses
@@ -926,6 +935,11 @@
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
+            
+            // If showing admin panel, refresh the data
+            if (pageId === 'adminPanel') {
+                loadAdminPanel();
+            }
         }
 
         function showModal(modalId) {
@@ -945,6 +959,7 @@
             const password = document.getElementById('signupPassword').value;
             const phone = document.getElementById('signupPhone').value;
             
+            // Get current users array
             const users = JSON.parse(localStorage.getItem('users'));
             
             // Check if email already exists
@@ -953,18 +968,18 @@
                 return;
             }
             
-            // Create new user
+            // Create new user with unique ID
             const newUser = {
-                id: Date.now(),
-                name,
-                email,
+                id: Date.now(), // Unique timestamp as ID
+                name: name,
+                email: email,
                 password: btoa(password),
-                phone,
+                phone: phone,
                 balance: 1000, // $1000 welcome bonus
                 role: 'user',
                 deposits: [],
                 transactions: [{
-                    id: Date.now(),
+                    id: Date.now() + 1,
                     type: 'welcome_bonus',
                     amount: 1000,
                     status: 'completed',
@@ -975,9 +990,14 @@
             
             // Add to users array
             users.push(newUser);
+            
+            // Save back to localStorage
             localStorage.setItem('users', JSON.stringify(users));
             
-            // Auto login
+            console.log('New user registered:', newUser.email);
+            console.log('Total users now:', users.length);
+            
+            // Auto login the new user
             currentUser = newUser;
             authToken = 'token_' + Date.now();
             localStorage.setItem('authToken', authToken);
@@ -1168,18 +1188,29 @@
             updateUserUI();
         }
 
-        // ===== ADMIN FUNCTIONS =====
+        // ===== FIXED ADMIN FUNCTIONS - NOW SHOWS ALL USERS =====
         function loadAdminPanel() {
+            console.log('Loading admin panel...');
+            
+            // Get fresh data from localStorage
             const users = JSON.parse(localStorage.getItem('users'));
             const pendingDeposits = JSON.parse(localStorage.getItem('pendingDeposits'));
             const walletAddresses = JSON.parse(localStorage.getItem('walletAddresses'));
             
-            // Update stats
+            console.log('Users found in admin panel:', users.length);
+            console.log('User list:', users.map(u => ({name: u.name, email: u.email, role: u.role})));
+            
+            // Update timestamp
+            document.getElementById('usersUpdateTime').textContent = new Date().toLocaleTimeString();
+            
+            // Update stats with current data
             document.getElementById('totalUsers').textContent = users.length;
             document.getElementById('totalBalanceAll').textContent = users.reduce((sum, u) => sum + u.balance, 0).toFixed(2);
-            document.getElementById('totalDepositsAll').textContent = users.reduce((sum, u) => {
+            
+            const totalDepositsAll = users.reduce((sum, u) => {
                 return sum + (u.deposits?.filter(d => d.status === 'completed').reduce((s, d) => s + d.amount, 0) || 0);
-            }, 0).toFixed(2);
+            }, 0);
+            document.getElementById('totalDepositsAll').textContent = totalDepositsAll.toFixed(2);
             document.getElementById('pendingDepositsCount').textContent = pendingDeposits.length;
             
             // Load wallet addresses
@@ -1187,15 +1218,25 @@
             document.getElementById('ethAddress').value = walletAddresses.ETH;
             document.getElementById('usdtAddress').value = walletAddresses.USDT;
             
-            // Show ALL users (including newly registered ones)
+            // Show ALL users (including newly registered ones) - FIXED
             const usersList = document.getElementById('usersList');
-            usersList.innerHTML = users.map(user => `
+            
+            if (users.length === 0) {
+                usersList.innerHTML = '<p style="color: #848E9C; text-align: center;">No users found</p>';
+                return;
+            }
+            
+            // Sort users by join date (newest first)
+            const sortedUsers = [...users].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            
+            usersList.innerHTML = sortedUsers.map(user => `
                 <div class="user-list-item">
                     <div class="user-info">
-                        <strong>${user.name}</strong>
+                        <strong>${user.name} ${user.role === 'admin' ? '👑' : ''}</strong>
                         <small>${user.email}</small><br>
                         <small>Balance: $${user.balance.toFixed(2)} | Role: ${user.role}</small><br>
-                        <small>Joined: ${new Date(user.createdAt).toLocaleDateString()}</small>
+                        <small>Joined: ${new Date(user.createdAt).toLocaleDateString()} at ${new Date(user.createdAt).toLocaleTimeString()}</small>
+                        <small style="display: block; color: #F0B90B;">ID: ${user.id}</small>
                     </div>
                     <div class="user-actions">
                         <button onclick="openEditModal(${user.id})" class="btn btn-primary" style="padding: 5px 10px; font-size: 12px;">
@@ -1279,7 +1320,7 @@
                 
                 alert(`Balance updated for ${users[userIndex].name}\nNew Balance: $${newBalance.toFixed(2)}`);
                 closeModal('editBalanceModal');
-                loadAdminPanel();
+                loadAdminPanel(); // Refresh admin panel
             }
         }
 
@@ -1291,7 +1332,7 @@
             localStorage.setItem('users', JSON.stringify(updatedUsers));
             
             alert('User deleted successfully');
-            loadAdminPanel();
+            loadAdminPanel(); // Refresh admin panel
         }
 
         function confirmDeposit(depositId) {
@@ -1339,7 +1380,7 @@
             localStorage.setItem('pendingDeposits', JSON.stringify(pendingDeposits));
             
             alert(`Deposit of $${deposit.amount} confirmed for ${deposit.userName}`);
-            loadAdminPanel();
+            loadAdminPanel(); // Refresh admin panel
         }
 
         function rejectDeposit(depositId) {
@@ -1368,7 +1409,7 @@
             localStorage.setItem('pendingDeposits', JSON.stringify(pendingDeposits));
             
             alert(`Deposit rejected`);
-            loadAdminPanel();
+            loadAdminPanel(); // Refresh admin panel
         }
 
         function updateWalletAddress(currency) {
@@ -1382,13 +1423,31 @@
             alert(`${currency} address updated successfully!`);
         }
 
+        // ===== DEBUG FUNCTION TO CHECK USERS =====
+        function checkAllUsers() {
+            const users = JSON.parse(localStorage.getItem('users'));
+            console.log('=== ALL REGISTERED USERS ===');
+            console.log('Total:', users.length);
+            users.forEach((user, index) => {
+                console.log(`${index + 1}. ${user.name} (${user.email}) - Balance: $${user.balance} - Role: ${user.role} - Joined: ${user.createdAt}`);
+            });
+            console.log('============================');
+            return users;
+        }
+
+        // Make debug function available in console
+        window.checkUsers = checkAllUsers;
+
         // ===== EVENT LISTENERS =====
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, checking authentication...');
+            
             // Check if user is logged in
             if (authToken) {
                 const savedUser = localStorage.getItem('currentUser');
                 if (savedUser) {
                     currentUser = JSON.parse(savedUser);
+                    console.log('Logged in as:', currentUser.email);
                     updateUserUI();
                     showPage('userDashboard');
                     
@@ -1478,6 +1537,7 @@
         // Admin panel
         document.getElementById('adminPanelBtn').addEventListener('click', (e) => {
             e.preventDefault();
+            console.log('Opening admin panel...');
             loadAdminPanel();
             showPage('adminPanel');
         });
