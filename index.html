@@ -135,6 +135,25 @@
             color: #0B0E11;
         }
 
+        .btn-success {
+            background: #0ECB81;
+            color: #0B0E11;
+        }
+
+        .btn-success:hover {
+            background: #0ECB81;
+            opacity: 0.9;
+        }
+
+        .btn-danger {
+            background: #CF304A;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #B32C43;
+        }
+
         /* ===== PAGES ===== */
         .page {
             display: none;
@@ -410,7 +429,7 @@
             border-radius: 8px;
             padding: 30px 20px;
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             border: 1px solid #2B2F36;
         }
 
@@ -448,6 +467,27 @@
             font-size: 0.95rem;
         }
 
+        .form-control:focus {
+            outline: none;
+            border-color: #F0B90B;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            background: #0B0E11;
+            border: 1px solid #2B2F36;
+            border-radius: 4px;
+            color: #EAECEF;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: #1E2026;
+            color: #EAECEF;
+        }
+
         /* ===== TABLES ===== */
         .table-container {
             background: #1E2026;
@@ -461,7 +501,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 500px;
+            min-width: 600px;
         }
 
         th {
@@ -480,10 +520,14 @@
             font-size: 0.9rem;
         }
 
+        tr:last-child td {
+            border-bottom: none;
+        }
+
         /* ===== WALLET ADDRESS ===== */
         .wallet-box {
             background: #0B0E11;
-            padding: 12px;
+            padding: 15px;
             border-radius: 4px;
             border: 1px solid #2B2F36;
             display: flex;
@@ -498,17 +542,119 @@
             font-family: monospace;
             color: #F0B90B;
             word-break: break-all;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
 
         .copy-btn {
             background: #2B2F36;
             color: #EAECEF;
             border: none;
-            padding: 5px 10px;
+            padding: 8px 15px;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .copy-btn:hover {
+            background: #3A3F4A;
+        }
+
+        /* ===== DEPOSIT PAGE ===== */
+        .deposit-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .deposit-card {
+            background: #1E2026;
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #2B2F36;
+        }
+
+        .deposit-title {
+            color: #F0B90B;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .deposit-subtitle {
+            color: #848E9C;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .currency-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .currency-option {
+            background: #0B0E11;
+            border: 1px solid #2B2F36;
+            border-radius: 8px;
+            padding: 15px 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .currency-option:hover {
+            border-color: #F0B90B;
+        }
+
+        .currency-option.selected {
+            background: #F0B90B;
+            border-color: #F0B90B;
+        }
+
+        .currency-option.selected .currency-name,
+        .currency-option.selected .currency-symbol {
+            color: #0B0E11;
+        }
+
+        .currency-icon {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .currency-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .currency-symbol {
+            color: #848E9C;
             font-size: 0.8rem;
+        }
+
+        .btc-color { color: #F7931A; }
+        .eth-color { color: #627EEA; }
+        .usdt-color { color: #26A17B; }
+
+        .amount-input {
+            margin: 25px 0;
+        }
+
+        .amount-input label {
+            display: block;
+            margin-bottom: 8px;
+            color: #848E9C;
+        }
+
+        .amount-field {
+            width: 100%;
+            padding: 15px;
+            background: #0B0E11;
+            border: 1px solid #2B2F36;
+            border-radius: 8px;
+            color: #EAECEF;
+            font-size: 1.1rem;
         }
 
         /* ===== ADMIN PANEL ===== */
@@ -610,8 +756,38 @@
         }
 
         .user-actions button {
-            padding: 5px 10px;
+            padding: 6px 12px;
             font-size: 0.8rem;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #2B2F36;
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab-btn {
+            background: transparent;
+            border: 1px solid #2B2F36;
+            color: #848E9C;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .admin-tab-btn:hover {
+            border-color: #F0B90B;
+            color: #F0B90B;
+        }
+
+        .admin-tab-btn.active {
+            background: #F0B90B;
+            color: #0B0E11;
+            border-color: #F0B90B;
         }
 
         /* ===== MODAL ===== */
@@ -638,8 +814,13 @@
             padding: 25px;
             border-radius: 8px;
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             border: 1px solid #2B2F36;
+        }
+
+        .modal-content h3 {
+            color: #F0B90B;
+            margin-bottom: 15px;
         }
 
         /* ===== FLOATING WHATSAPP BUTTON ===== */
@@ -649,13 +830,13 @@
             right: 20px;
             background: #25D366;
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 25px;
+            font-size: 28px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             cursor: pointer;
             transition: 0.3s;
@@ -744,12 +925,16 @@
                 grid-template-columns: 1fr;
             }
             
+            .currency-selector {
+                grid-template-columns: 1fr;
+            }
+            
             .whatsapp-float {
                 bottom: 15px;
                 right: 15px;
-                width: 45px;
-                height: 45px;
-                font-size: 22px;
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
             }
         }
 
@@ -773,13 +958,20 @@
             .modal-content {
                 padding: 20px;
             }
+            
+            .admin-tabs {
+                flex-direction: column;
+            }
+            
+            .admin-tab-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
-    <!-- YOUR WHATSAPP NUMBER: +2348123456789 -->
-    <a href="https://wa.me/2348123456789?text=Hello%20I%20need%20help%20with%20Active%20Investments" 
+    <a href="https://wa.me/2348130098476?text=Hello%20I%20need%20help%20with%20Active%20Investments" 
        class="whatsapp-float" 
        target="_blank"
        title="Contact Customer Care">
@@ -967,8 +1159,28 @@
                             <input type="password" id="signupPassword" class="form-control" placeholder="••••••••" minlength="8" required>
                         </div>
                         <div class="form-group">
-                            <label>Phone (Optional)</label>
-                            <input type="tel" id="signupPhone" class="form-control" placeholder="+1234567890">
+                            <label>Phone Number</label>
+                            <input type="tel" id="signupPhone" class="form-control" placeholder="+2348123456789" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Select Your Currency</label>
+                            <select id="signupCurrency" class="form-select" required>
+                                <option value="">-- Select your currency --</option>
+                                <option value="USD">🇺🇸 USD - US Dollar</option>
+                                <option value="EUR">🇪🇺 EUR - Euro</option>
+                                <option value="GBP">🇬🇧 GBP - British Pound</option>
+                                <option value="NGN">🇳🇬 NGN - Nigerian Naira</option>
+                                <option value="KES">🇰🇪 KES - Kenyan Shilling</option>
+                                <option value="ZAR">🇿🇦 ZAR - South African Rand</option>
+                                <option value="GHS">🇬🇭 GHS - Ghanaian Cedi</option>
+                                <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+                                <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+                                <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+                                <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+                                <option value="INR">🇮🇳 INR - Indian Rupee</option>
+                                <option value="BRL">🇧🇷 BRL - Brazilian Real</option>
+                                <option value="MXN">🇲🇽 MXN - Mexican Peso</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Referral Code (Optional)</label>
@@ -1041,7 +1253,7 @@
                         <div class="stats-grid">
                             <div class="stat-card">
                                 <h3>Total Balance</h3>
-                                <div class="value">$<span id="totalBalance">0.00</span></div>
+                                <div class="value"><span id="userCurrency">$</span><span id="totalBalance">0.00</span></div>
                             </div>
                             <div class="stat-card">
                                 <h3>Active Investments</h3>
@@ -1049,12 +1261,17 @@
                             </div>
                             <div class="stat-card">
                                 <h3>Referral Earnings</h3>
-                                <div class="value">$<span id="referralEarnings">0.00</span></div>
+                                <div class="value"><span id="userCurrency2">$</span><span id="referralEarnings">0.00</span></div>
                             </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <h3>Your Currency</h3>
+                            <div class="value" id="displayCurrency">USD</div>
                         </div>
                     </div>
                     
-                    <!-- Invest Section (Investment Plans - ONLY VISIBLE HERE) -->
+                    <!-- Invest Section -->
                     <div id="investSection" style="display: none;">
                         <h2 style="color: #F0B90B; margin-bottom: 20px;">Investment Plans</h2>
                         
@@ -1063,7 +1280,7 @@
                             <div class="plan-card">
                                 <div class="plan-name">Essential Plan</div>
                                 <div class="plan-min">Minimum Investment</div>
-                                <div class="plan-amount">$250</div>
+                                <div class="plan-amount"><span id="currencySymbol1">$</span>250</div>
                                 <div class="plan-duration">Duration: 14 Days</div>
                                 <div class="plan-return">
                                     <div class="plan-return-label">Target Return</div>
@@ -1077,7 +1294,7 @@
                             <div class="plan-card">
                                 <div class="plan-name">Advanced Plan</div>
                                 <div class="plan-min">Minimum Investment</div>
-                                <div class="plan-amount">$2,500</div>
+                                <div class="plan-amount"><span id="currencySymbol2">$</span>2,500</div>
                                 <div class="plan-duration">Duration: 30 Days</div>
                                 <div class="plan-return">
                                     <div class="plan-return-label">Target Return</div>
@@ -1091,7 +1308,7 @@
                             <div class="plan-card">
                                 <div class="plan-name">Professional Plan</div>
                                 <div class="plan-min">Minimum Investment</div>
-                                <div class="plan-amount">$15,000</div>
+                                <div class="plan-amount"><span id="currencySymbol3">$</span>15,000</div>
                                 <div class="plan-duration">Duration: 60 Days</div>
                                 <div class="plan-return">
                                     <div class="plan-return-label">Target Return</div>
@@ -1106,8 +1323,8 @@
                                 <div class="plan-badge">Premium</div>
                                 <div class="plan-name">Institutional Portfolio</div>
                                 <div class="plan-min">Minimum Investment</div>
-                                <div class="plan-amount">$100,000+</div>
-                                <div class="plan-duration">Investment return after 10 days: $177,000</div>
+                                <div class="plan-amount"><span id="currencySymbol4">$</span>100,000+</div>
+                                <div class="plan-duration">Investment return after 10 days: <span id="currencySymbol5">$</span>177,000</div>
                                 <div class="plan-return">
                                     <div class="plan-return-label">Custom Strategy</div>
                                     <div class="plan-return-value">Performance Model</div>
@@ -1124,41 +1341,53 @@
                         <div id="portfolioList"></div>
                     </div>
                     
-                    <!-- Deposit Section -->
+                    <!-- Deposit Page (Full Page) -->
                     <div id="depositSection" style="display: none;">
-                        <h2 style="color: #F0B90B; margin-bottom: 20px;">Deposit Funds</h2>
-                        
-                        <div class="auth-card" style="max-width: 500px; margin: 0;">
-                            <form id="depositForm">
-                                <div class="form-group">
-                                    <label>Amount (USD)</label>
-                                    <input type="number" id="depositAmount" class="form-control" min="10" step="1" placeholder="100" required>
-                                </div>
+                        <div class="deposit-container">
+                            <div class="deposit-card">
+                                <h1 class="deposit-title">Make a Deposit</h1>
+                                <p class="deposit-subtitle">Choose your cryptocurrency and enter the amount to get your personal wallet address</p>
                                 
-                                <div class="form-group">
-                                    <label>Select Cryptocurrency</label>
-                                    <select id="depositCrypto" class="form-control">
-                                        <option value="BTC">Bitcoin (BTC)</option>
-                                        <option value="ETH">Ethereum (ETH)</option>
-                                        <option value="USDT">Tether (USDT)</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="wallet-box">
-                                    <span class="wallet-address" id="walletAddress">Loading...</span>
-                                    <button type="button" class="copy-btn" id="copyAddressBtn">
-                                        <i class="far fa-copy"></i> Copy
+                                <form id="depositForm">
+                                    <div class="currency-selector" id="currencySelector">
+                                        <div class="currency-option selected" data-currency="BTC" onclick="selectCurrency('BTC')">
+                                            <div class="currency-icon btc-color"><i class="fab fa-bitcoin"></i></div>
+                                            <div class="currency-name">Bitcoin</div>
+                                            <div class="currency-symbol">BTC</div>
+                                        </div>
+                                        <div class="currency-option" data-currency="ETH" onclick="selectCurrency('ETH')">
+                                            <div class="currency-icon eth-color"><i class="fab fa-ethereum"></i></div>
+                                            <div class="currency-name">Ethereum</div>
+                                            <div class="currency-symbol">ETH</div>
+                                        </div>
+                                        <div class="currency-option" data-currency="USDT" onclick="selectCurrency('USDT')">
+                                            <div class="currency-icon usdt-color"><i class="fas fa-dollar-sign"></i></div>
+                                            <div class="currency-name">Tether</div>
+                                            <div class="currency-symbol">USDT</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="amount-input">
+                                        <label>Amount in <span id="selectedCurrency">BTC</span></label>
+                                        <input type="number" id="depositAmount" class="amount-field" min="0.001" step="0.001" placeholder="0.001" required>
+                                    </div>
+                                    
+                                    <div class="wallet-box" id="walletBox">
+                                        <span class="wallet-address" id="walletAddress">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>
+                                        <button type="button" class="copy-btn" id="copyAddressBtn">
+                                            <i class="far fa-copy"></i> Copy
+                                        </button>
+                                    </div>
+                                    
+                                    <p style="color: #848E9C; font-size: 0.85rem; margin: 20px 0; text-align: center;">
+                                        <i class="fas fa-info-circle"></i> Send the exact amount to this address. Your account will be credited after 3 confirmations.
+                                    </p>
+                                    
+                                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px;">
+                                        <i class="fas fa-paper-plane"></i> Submit Deposit Request
                                     </button>
-                                </div>
-                                
-                                <p style="color: #848E9C; font-size: 0.85rem; margin-top: 10px;">
-                                    Send the exact amount to this address. Your account will be credited after 3 confirmations.
-                                </p>
-                                
-                                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
-                                    Request Deposit
-                                </button>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     
@@ -1177,7 +1406,7 @@
                             </div>
                             <div class="stat-card">
                                 <h3>Referral Earnings</h3>
-                                <div class="value">$<span id="userReferralEarnings">0.00</span></div>
+                                <div class="value"><span id="userCurrency3">$</span><span id="userReferralEarnings">0.00</span></div>
                             </div>
                         </div>
                         
@@ -1186,6 +1415,17 @@
                             <button class="copy-btn" onclick="copyUserReferralCode()">
                                 <i class="far fa-copy"></i> Copy Code
                             </button>
+                        </div>
+                        
+                        <div class="plan-card" style="margin-top: 20px;">
+                            <h3 style="color: #F0B90B; margin-bottom: 15px;">How It Works</h3>
+                            <ul style="color: #EAECEF; line-height: 2; margin-left: 20px;">
+                                <li>Share your referral code with friends</li>
+                                <li>Earn 5% commission on their first deposit</li>
+                                <li>Earn 2% on their referrals (Level 2)</li>
+                                <li>Earn 1% on Level 3 referrals</li>
+                                <li>Withdraw earnings anytime</li>
+                            </ul>
                         </div>
                     </div>
                     
@@ -1221,7 +1461,7 @@
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
                         <div>
                             <h2><i class="fas fa-user-shield"></i> Admin Panel</h2>
-                            <p style="color: #848E9C;">All users stored in cloud - visible from any device</p>
+                            <p style="color: #848E9C;">Manage users, deposits, and platform settings</p>
                         </div>
                         <button class="btn btn-outline" id="backToUserDashboard">
                             <i class="fas fa-arrow-left"></i> Back
@@ -1229,6 +1469,7 @@
                     </div>
                 </div>
 
+                <!-- Stats Overview -->
                 <div class="admin-stats">
                     <div class="stat-box">
                         <h3>Total Users</h3>
@@ -1238,11 +1479,123 @@
                         <h3>Total Balance</h3>
                         <div class="number">$<span id="totalBalanceAll">0</span></div>
                     </div>
+                    <div class="stat-box">
+                        <h3>Pending Deposits</h3>
+                        <div class="number" id="pendingDepositsCount">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total Deposits</h3>
+                        <div class="number">$<span id="totalDepositsAll">0</span></div>
+                    </div>
                 </div>
 
-                <div class="admin-card">
-                    <h3><i class="fas fa-users"></i> All Registered Users</h3>
-                    <div id="usersList"></div>
+                <!-- Admin Tabs -->
+                <div class="admin-tabs">
+                    <button class="admin-tab-btn active" id="usersTabBtn" onclick="showAdminTab('users')">Users</button>
+                    <button class="admin-tab-btn" id="depositsTabBtn" onclick="showAdminTab('deposits')">Pending Deposits</button>
+                    <button class="admin-tab-btn" id="transactionsTabBtn" onclick="showAdminTab('transactions')">All Transactions</button>
+                    <button class="admin-tab-btn" id="settingsTabBtn" onclick="showAdminTab('settings')">Settings</button>
+                </div>
+
+                <!-- USERS TAB -->
+                <div id="usersTab" class="admin-tab">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-users"></i> All Registered Users</h3>
+                        <div id="usersList"></div>
+                    </div>
+                </div>
+
+                <!-- PENDING DEPOSITS TAB -->
+                <div id="depositsTab" class="admin-tab" style="display: none;">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-clock"></i> Pending Deposits</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Amount (USD)</th>
+                                        <th>Currency</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pendingDepositsList">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">Loading...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALL TRANSACTIONS TAB -->
+                <div id="transactionsTab" class="admin-tab" style="display: none;">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-history"></i> All Transactions</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Type</th>
+                                        <th>Amount (USD)</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="allTransactionsList">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">Loading...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS TAB -->
+                <div id="settingsTab" class="admin-tab" style="display: none;">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-wallet"></i> Wallet Addresses</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                            <div>
+                                <label>Bitcoin (BTC) Address</label>
+                                <input type="text" id="btcAddress" class="form-control" value="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">
+                                <button class="btn btn-primary" style="margin-top: 10px;" onclick="updateAddress('BTC')">Update BTC</button>
+                            </div>
+                            <div>
+                                <label>Ethereum (ETH) Address</label>
+                                <input type="text" id="ethAddress" class="form-control" value="0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a">
+                                <button class="btn btn-primary" style="margin-top: 10px;" onclick="updateAddress('ETH')">Update ETH</button>
+                            </div>
+                            <div>
+                                <label>Tether (USDT) Address</label>
+                                <input type="text" id="usdtAddress" class="form-control" value="0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a">
+                                <button class="btn btn-primary" style="margin-top: 10px;" onclick="updateAddress('USDT')">Update USDT</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-card">
+                        <h3><i class="fas fa-percent"></i> Referral Commission</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                            <div>
+                                <label>Level 1 (%)</label>
+                                <input type="number" id="level1Rate" class="form-control" value="5" min="0" max="100">
+                            </div>
+                            <div>
+                                <label>Level 2 (%)</label>
+                                <input type="number" id="level2Rate" class="form-control" value="2" min="0" max="100">
+                            </div>
+                            <div>
+                                <label>Level 3 (%)</label>
+                                <input type="number" id="level3Rate" class="form-control" value="1" min="0" max="100">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" style="margin-top: 15px;" onclick="updateCommissionRates()">Update Rates</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1251,7 +1604,7 @@
     <!-- Edit Balance Modal -->
     <div class="modal" id="editBalanceModal">
         <div class="modal-content">
-            <h3 style="color: #F0B90B; margin-bottom: 15px;">Edit User Balance</h3>
+            <h3>Edit User Balance</h3>
             <form id="editBalanceForm">
                 <input type="hidden" id="editUserId">
                 <div class="form-group">
@@ -1267,10 +1620,36 @@
                     <input type="text" id="editCurrentBalance" class="form-control" readonly>
                 </div>
                 <div class="form-group">
-                    <label>New Balance ($)</label>
+                    <label>New Balance (USD)</label>
                     <input type="number" id="editNewBalance" class="form-control" step="0.01" required>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Update Balance</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Deposit Modal -->
+    <div class="modal" id="confirmDepositModal">
+        <div class="modal-content">
+            <h3>Confirm Deposit</h3>
+            <form id="confirmDepositForm">
+                <input type="hidden" id="confirmDepositId">
+                <div class="form-group">
+                    <label>User</label>
+                    <input type="text" id="confirmUserName" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Amount (USD)</label>
+                    <input type="text" id="confirmAmount" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Currency</label>
+                    <input type="text" id="confirmCurrency" class="form-control" readonly>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn btn-success" style="flex: 1;">Confirm & Credit</button>
+                    <button type="button" class="btn btn-outline" style="flex: 1;" onclick="closeModal('confirmDepositModal')">Cancel</button>
+                </div>
             </form>
         </div>
     </div>
@@ -1295,6 +1674,20 @@
         let currentUser = null;
         let currentUserId = localStorage.getItem('currentUserId');
 
+        // Currency symbols map
+        const currencySymbols = {
+            'USD': '$', 'EUR': '€', 'GBP': '£', 'NGN': '₦', 'KES': 'KSh',
+            'ZAR': 'R', 'GHS': '₵', 'CAD': 'C$', 'AUD': 'A$', 'JPY': '¥',
+            'CNY': '¥', 'INR': '₹', 'BRL': 'R$', 'MXN': 'MX$'
+        };
+
+        // Wallet addresses
+        const walletAddresses = {
+            'BTC': '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+            'ETH': '0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a',
+            'USDT': '0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a'
+        };
+
         // ===== PAGE MANAGEMENT =====
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
@@ -1317,6 +1710,28 @@
             document.getElementById('navLinks').classList.toggle('show');
         });
 
+        // ===== CURRENCY FUNCTIONS =====
+        function updateCurrencySymbols(currency) {
+            const symbol = currencySymbols[currency] || '$';
+            document.querySelectorAll('[id^="currencySymbol"]').forEach(el => {
+                el.textContent = symbol;
+            });
+            document.querySelectorAll('[id^="userCurrency"]').forEach(el => {
+                el.textContent = symbol;
+            });
+            document.getElementById('displayCurrency').textContent = currency;
+        }
+
+        // ===== DEPOSIT PAGE FUNCTIONS =====
+        function selectCurrency(currency) {
+            document.querySelectorAll('.currency-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.querySelector(`[data-currency="${currency}"]`).classList.add('selected');
+            document.getElementById('selectedCurrency').textContent = currency;
+            document.getElementById('walletAddress').textContent = walletAddresses[currency];
+        }
+
         // ===== REFERRAL FUNCTIONS =====
         function generateReferralCode() {
             return 'ACT' + Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -1329,7 +1744,9 @@
         }
 
         function investInPlan(planName, minAmount) {
-            alert(`You've selected the ${planName} Plan. Minimum investment: $${minAmount.toLocaleString()}\n\nPlease go to Deposit page to fund your account.`);
+            alert(`You've selected the ${planName} Plan. Minimum investment: ${currencySymbols[currentUser?.currency || 'USD']}${minAmount.toLocaleString()}\n\nPlease go to Deposit page to fund your account.`);
+            showPage('userDashboard');
+            document.querySelector('[data-page="deposit"]').click();
         }
 
         // ===== AUTHENTICATION =====
@@ -1340,7 +1757,13 @@
             const email = document.getElementById('signupEmail').value;
             const password = btoa(document.getElementById('signupPassword').value);
             const phone = document.getElementById('signupPhone').value;
+            const currency = document.getElementById('signupCurrency').value;
             const referralCode = document.getElementById('signupReferral').value;
+
+            if (!currency) {
+                alert('Please select your currency');
+                return;
+            }
 
             try {
                 const usersRef = db.collection('users');
@@ -1358,6 +1781,7 @@
                     email,
                     password,
                     phone,
+                    currency,
                     balance: 1000,
                     role: 'user',
                     deposits: [],
@@ -1386,10 +1810,15 @@
                         referrals.push({
                             userId: docRef.id,
                             name: name,
-                            amount: 0,
+                            amount: 1000,
                             date: new Date().toISOString()
                         });
                         await referrerDoc.ref.update({ referrals });
+                        
+                        // Add commission to referrer
+                        const commission = 50; // 5% of 1000
+                        const newEarnings = (referrerData.referralEarnings || 0) + commission;
+                        await referrerDoc.ref.update({ referralEarnings: newEarnings });
                     }
                 }
                 
@@ -1399,8 +1828,10 @@
                 const userDoc = await docRef.get();
                 currentUser = { id: userDoc.id, ...userDoc.data() };
                 
-                alert('Account created successfully! You received $1000 welcome bonus.');
+                updateCurrencySymbols(currentUser.currency);
                 updateUserUI();
+                
+                alert('Account created successfully! You received $1000 welcome bonus.');
                 showPage('userDashboard');
                 
             } catch (error) {
@@ -1436,6 +1867,7 @@
                 localStorage.setItem('currentUserId', currentUserId);
                 currentUser = { id: userDoc.id, ...userData };
                 
+                updateCurrencySymbols(currentUser.currency);
                 updateUserUI();
                 showPage('userDashboard');
                 
@@ -1466,24 +1898,14 @@
         }
 
         // ===== DEPOSIT =====
-        function loadWalletAddress() {
-            const crypto = document.getElementById('depositCrypto').value;
-            const addresses = {
-                BTC: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
-                ETH: '0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a',
-                USDT: '0x742d35Cc6634C0532925a3b844Bc9e0F3A5C5b3a'
-            };
-            document.getElementById('walletAddress').textContent = addresses[crypto];
-        }
-
         async function handleDeposit(e) {
             e.preventDefault();
             
+            const selectedCurrency = document.querySelector('.currency-option.selected')?.dataset.currency || 'BTC';
             const amount = parseFloat(document.getElementById('depositAmount').value);
-            const crypto = document.getElementById('depositCrypto').value;
             
-            if (amount < 10) {
-                alert('Minimum deposit is $10');
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid amount');
                 return;
             }
 
@@ -1493,13 +1915,43 @@
                     userId: currentUser.id,
                     userName: currentUser.name,
                     userEmail: currentUser.email,
-                    amount,
-                    currency: crypto,
+                    amount: amount,
+                    currency: selectedCurrency,
                     status: 'pending',
                     date: new Date().toISOString()
                 });
 
-                alert(`Deposit Request Submitted! Send $${amount} worth of ${crypto} to the provided address.`);
+                // Add to user's deposits
+                const userRef = db.collection('users').doc(currentUser.id);
+                const deposits = currentUser.deposits || [];
+                deposits.push({
+                    amount: amount,
+                    currency: selectedCurrency,
+                    status: 'pending',
+                    date: new Date().toISOString()
+                });
+                
+                await userRef.update({ deposits });
+
+                // Add transaction
+                const transactions = currentUser.transactions || [];
+                transactions.push({
+                    type: 'deposit_request',
+                    amount: amount,
+                    status: 'pending',
+                    date: new Date().toISOString()
+                });
+                
+                await userRef.update({ transactions });
+
+                // Update local user
+                currentUser.deposits = deposits;
+                currentUser.transactions = transactions;
+                
+                alert(`Deposit Request Submitted! Send ${amount} ${selectedCurrency} to the provided address.`);
+                
+                // Show the wallet address again
+                document.getElementById('walletAddress').textContent = walletAddresses[selectedCurrency];
                 
             } catch (error) {
                 console.error('Deposit error:', error);
@@ -1508,6 +1960,26 @@
         }
 
         // ===== ADMIN FUNCTIONS =====
+        function showAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + 'Tab').style.display = 'block';
+            document.getElementById(tabName + 'TabBtn').classList.add('active');
+            
+            if (tabName === 'deposits') {
+                loadPendingDeposits();
+            } else if (tabName === 'transactions') {
+                loadAllTransactions();
+            } else if (tabName === 'users') {
+                loadAdminPanel();
+            }
+        }
+
         async function loadAdminPanel() {
             try {
                 const usersRef = db.collection('users');
@@ -1522,14 +1994,20 @@
                 document.getElementById('totalBalanceAll').textContent = 
                     users.reduce((sum, u) => sum + (u.balance || 0), 0).toFixed(2);
                 
+                const totalDeposits = users.reduce((sum, u) => {
+                    return sum + (u.deposits?.filter(d => d.status === 'completed').reduce((s, d) => s + d.amount, 0) || 0);
+                }, 0);
+                document.getElementById('totalDepositsAll').textContent = totalDeposits.toFixed(2);
+                
                 const usersList = document.getElementById('usersList');
                 usersList.innerHTML = users.map(user => `
                     <div class="user-list-item">
                         <div class="user-info">
                             <strong>${user.name} ${user.role === 'admin' ? '👑' : ''}</strong>
                             <small>Email: ${user.email}</small>
-                            <small>Balance: $${(user.balance || 0).toFixed(2)}</small>
-                            <small>Joined: ${new Date(user.createdAt).toLocaleDateString()}</small>
+                            <small>Balance: ${currencySymbols[user.currency] || '$'}${(user.balance || 0).toFixed(2)} (${user.currency})</small>
+                            <small>Phone: ${user.phone || 'N/A'}</small>
+                            <small>Referrals: ${user.referrals?.length || 0}</small>
                         </div>
                         <div class="user-actions">
                             <button onclick="openEditModal('${user.id}', '${user.name}', '${user.email}', ${user.balance || 0})" 
@@ -1542,6 +2020,86 @@
                 
             } catch (error) {
                 console.error('Error loading admin panel:', error);
+            }
+        }
+
+        async function loadPendingDeposits() {
+            try {
+                const pendingRef = db.collection('pendingDeposits');
+                const snapshot = await pendingRef.get();
+                
+                const deposits = [];
+                snapshot.forEach(doc => {
+                    deposits.push({ id: doc.id, ...doc.data() });
+                });
+                
+                document.getElementById('pendingDepositsCount').textContent = deposits.length;
+                
+                const list = document.getElementById('pendingDepositsList');
+                if (deposits.length === 0) {
+                    list.innerHTML = '<tr><td colspan="5" style="text-align: center;">No pending deposits</td></tr>';
+                } else {
+                    list.innerHTML = deposits.map(deposit => `
+                        <tr>
+                            <td>${deposit.userName}<br><small>${deposit.userEmail}</small></td>
+                            <td>$${deposit.amount}</td>
+                            <td>${deposit.currency}</td>
+                            <td>${new Date(deposit.date).toLocaleString()}</td>
+                            <td>
+                                <button onclick="openConfirmModal('${deposit.id}', '${deposit.userName}', ${deposit.amount}, '${deposit.currency}', '${deposit.userId}')" 
+                                        class="btn btn-success" style="padding: 5px 10px;">
+                                    Confirm
+                                </button>
+                                <button onclick="rejectDeposit('${deposit.id}')" class="btn btn-outline" style="padding: 5px 10px;">
+                                    Reject
+                                </button>
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading pending deposits:', error);
+            }
+        }
+
+        async function loadAllTransactions() {
+            try {
+                const usersRef = db.collection('users');
+                const snapshot = await usersRef.get();
+                
+                const allTransactions = [];
+                snapshot.forEach(doc => {
+                    const user = { id: doc.id, ...doc.data() };
+                    if (user.transactions) {
+                        user.transactions.forEach(t => {
+                            allTransactions.push({
+                                ...t,
+                                userName: user.name,
+                                userEmail: user.email,
+                                userCurrency: user.currency
+                            });
+                        });
+                    }
+                });
+                
+                allTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                const list = document.getElementById('allTransactionsList');
+                if (allTransactions.length === 0) {
+                    list.innerHTML = '<tr><td colspan="5" style="text-align: center;">No transactions</td></tr>';
+                } else {
+                    list.innerHTML = allTransactions.map(t => `
+                        <tr>
+                            <td>${t.userName}<br><small>${t.userEmail}</small></td>
+                            <td>${t.type}</td>
+                            <td>$${t.amount}</td>
+                            <td><span style="color: ${t.status === 'completed' ? '#0ECB81' : '#F0B90B'};">${t.status}</span></td>
+                            <td>${new Date(t.date).toLocaleString()}</td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading transactions:', error);
             }
         }
 
@@ -1575,6 +2133,108 @@
             }
         }
 
+        function openConfirmModal(depositId, userName, amount, currency, userId) {
+            document.getElementById('confirmDepositId').value = depositId;
+            document.getElementById('confirmUserName').value = userName;
+            document.getElementById('confirmAmount').value = `$${amount}`;
+            document.getElementById('confirmCurrency').value = currency;
+            document.getElementById('confirmDepositForm').dataset.userId = userId;
+            document.getElementById('confirmDepositForm').dataset.amount = amount;
+            showModal('confirmDepositModal');
+        }
+
+        async function confirmDeposit(e) {
+            e.preventDefault();
+            
+            const depositId = document.getElementById('confirmDepositId').value;
+            const userId = e.target.dataset.userId;
+            const amount = parseFloat(e.target.dataset.amount);
+            
+            try {
+                const userRef = db.collection('users').doc(userId);
+                const userDoc = await userRef.get();
+                const userData = userDoc.data();
+                
+                const newBalance = (userData.balance || 0) + amount;
+                await userRef.update({ balance: newBalance });
+                
+                const deposits = userData.deposits || [];
+                const updatedDeposits = deposits.map(d => {
+                    if (d.amount === amount && d.status === 'pending') {
+                        return { ...d, status: 'completed' };
+                    }
+                    return d;
+                });
+                await userRef.update({ deposits: updatedDeposits });
+                
+                const transactions = userData.transactions || [];
+                transactions.push({
+                    type: 'deposit',
+                    amount: amount,
+                    status: 'completed',
+                    date: new Date().toISOString()
+                });
+                await userRef.update({ transactions: transactions });
+                
+                await db.collection('pendingDeposits').doc(depositId).delete();
+                
+                alert(`Deposit confirmed! $${amount} credited to ${userData.name}`);
+                closeModal('confirmDepositModal');
+                
+                loadPendingDeposits();
+                loadAdminPanel();
+                loadAllTransactions();
+                
+            } catch (error) {
+                console.error('Error confirming deposit:', error);
+                alert('Error confirming deposit');
+            }
+        }
+
+        async function rejectDeposit(depositId) {
+            if (!confirm('Are you sure you want to reject this deposit?')) return;
+            
+            try {
+                const depositDoc = await db.collection('pendingDeposits').doc(depositId).get();
+                const deposit = depositDoc.data();
+                
+                const userRef = db.collection('users').doc(deposit.userId);
+                const userDoc = await userRef.get();
+                const userData = userDoc.data();
+                
+                const deposits = userData.deposits || [];
+                const updatedDeposits = deposits.map(d => {
+                    if (d.amount === deposit.amount && d.status === 'pending') {
+                        return { ...d, status: 'rejected' };
+                    }
+                    return d;
+                });
+                await userRef.update({ deposits: updatedDeposits });
+                
+                await db.collection('pendingDeposits').doc(depositId).delete();
+                
+                alert('Deposit rejected');
+                loadPendingDeposits();
+                
+            } catch (error) {
+                console.error('Error rejecting deposit:', error);
+                alert('Error rejecting deposit');
+            }
+        }
+
+        function updateAddress(currency) {
+            const address = document.getElementById(currency.toLowerCase() + 'Address').value;
+            walletAddresses[currency] = address;
+            alert(`${currency} address updated to: ${address}`);
+        }
+
+        function updateCommissionRates() {
+            const level1 = document.getElementById('level1Rate').value;
+            const level2 = document.getElementById('level2Rate').value;
+            const level3 = document.getElementById('level3Rate').value;
+            alert(`Commission rates updated: Level 1: ${level1}%, Level 2: ${level2}%, Level 3: ${level3}%`);
+        }
+
         // ===== CHECK LOGIN STATUS =====
         async function checkLoginStatus() {
             if (currentUserId) {
@@ -1582,6 +2242,7 @@
                     const userDoc = await db.collection('users').doc(currentUserId).get();
                     if (userDoc.exists) {
                         currentUser = { id: userDoc.id, ...userDoc.data() };
+                        updateCurrencySymbols(currentUser.currency);
                         updateUserUI();
                         showPage('userDashboard');
                         
@@ -1598,14 +2259,26 @@
         }
 
         // ===== INITIALIZATION =====
-        document.addEventListener('DOMContentLoaded', checkLoginStatus);
+        document.addEventListener('DOMContentLoaded', () => {
+            checkLoginStatus();
+            
+            // Set default currency on deposit page
+            selectCurrency('BTC');
+        });
 
         // ===== EVENT LISTENERS =====
         document.getElementById('signupForm').addEventListener('submit', handleSignup);
         document.getElementById('loginForm').addEventListener('submit', handleLogin);
         document.getElementById('depositForm').addEventListener('submit', handleDeposit);
-        document.getElementById('depositCrypto').addEventListener('change', loadWalletAddress);
         document.getElementById('editBalanceForm').addEventListener('submit', handleEditBalance);
+        document.getElementById('confirmDepositForm').addEventListener('submit', confirmDeposit);
+
+        // Copy address button
+        document.getElementById('copyAddressBtn').addEventListener('click', () => {
+            const address = document.getElementById('walletAddress').textContent;
+            navigator.clipboard.writeText(address);
+            alert('Address copied to clipboard!');
+        });
 
         // Navigation
         document.getElementById('homeLink').addEventListener('click', (e) => {
@@ -1677,7 +2350,6 @@
                     document.getElementById('portfolioSection').style.display = 'block';
                 } else if (page === 'deposit') {
                     document.getElementById('depositSection').style.display = 'block';
-                    loadWalletAddress();
                 } else if (page === 'referral') {
                     document.getElementById('referralSection').style.display = 'block';
                 } else if (page === 'history') {
@@ -1702,13 +2374,6 @@
 
         document.getElementById('backToUserDashboard').addEventListener('click', () => {
             showPage('userDashboard');
-        });
-
-        // Copy wallet address
-        document.getElementById('copyAddressBtn').addEventListener('click', () => {
-            const address = document.getElementById('walletAddress').textContent;
-            navigator.clipboard.writeText(address);
-            alert('Address copied to clipboard!');
         });
 
         // Close modals
